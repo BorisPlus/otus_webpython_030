@@ -3,7 +3,7 @@
 Login And Registration on Django&React separately.
 
 
-## Проверка работоспособности
+## Checking
 
 
 Run at first terminal window:
@@ -29,15 +29,15 @@ Worked urls:
 Look GIF-animation:
 <kbd>![jwt.png](README.files/img/screencasts/jwt.gif)</kbd>
 
-## Авторы
+## Author
 
 * https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
 * **BorisPlus** - [https://github.com/BorisPlus/otus_webpython_023](https://github.com/BorisPlus/otus_webpython_025)
 
-## Лицензия
+## License
 
-Свободно
+Free
 
-## Дополнительные сведения
+## Additional info
 
-Проект в рамках домашнего задания курса "Web-разработчик на Python" на https://otus.ru/learning
+Homework within "Web-разработчик на Python" on https://otus.ru/learning
