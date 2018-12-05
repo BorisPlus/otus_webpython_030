@@ -8,7 +8,7 @@ Login And Registration on Django&React separately.
 
 Run at first terminal window:
 ```
-python3 manage.py migrate
+python3 manage.py runserver
 ```
 
 Run at second terminal window:
