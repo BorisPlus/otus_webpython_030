@@ -14,7 +14,7 @@ python3 manage.py runserver
 Run at second terminal window:
 
 ```
-cd myapp/ && npm start
+cd myapp/ && npm i && npm start
 ```
 
 Worked urls:
