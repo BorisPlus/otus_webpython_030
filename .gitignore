@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# My gitignore
+NO.*
+TMP.*
+gitignore/
+.idea/
+
+# React
+node_modules/
