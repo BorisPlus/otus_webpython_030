@@ -4,6 +4,7 @@ __pycache__/
 # My gitignore
 NO.*
 TMP.*
+OLD.*
 gitignore/
 .idea/
 
