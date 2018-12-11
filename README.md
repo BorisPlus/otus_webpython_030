@@ -1,7 +1,8 @@
 # otus_webpython_023
 
-Login And Registration on Django&React separately.
+Login And Registration on Django  Redux&React separately.
 
+**Почему после авторизации компонент(-ы) не обновляе(-ю)тся?**
 
 ## Checking
 
@@ -31,6 +32,8 @@ Help. I just need somebody help.
 
 Look GIF-animation:
 <kbd>![not_rerender.png](README.files/img/screencasts/not_rerender.gif)</kbd>
+
+Почему после авторизации компонент не обновляется?
 
 Авторизация проходит, но как компонент переобновить? И как обновить другие компоненты. Если например прошел авторизацию, то должны появится новые пункты меню и должен появится в контенте другого компонента, опирающегося на наличие токена авторизации, новый див с текстом.
 
