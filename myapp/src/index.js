@@ -7,9 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import './static/frontend/min.css';
 
-//...state
-const ReduxApp = connect( state => ({}), dispatch => ({}))(App);
-//const ReduxApp = connect()(App);
+const mapStateToProps = state => ({
+    state: state
+});
+
+const ReduxApp = connect(mapStateToProps)(App);
 
 ReactDOM.render(
     <Provider store={store}>
