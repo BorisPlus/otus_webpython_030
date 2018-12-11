@@ -25,9 +25,14 @@ Worked urls:
 * React (myapp)
   * http://127.0.0.1:3000/
 
+## Why not rerender page
+
+Help. I just need somebody help.
 
 Look GIF-animation:
-<kbd>![jwt.png](README.files/img/screencasts/jwt.gif)</kbd>
+<kbd>![not_rerender.png](README.files/img/screencasts/not_rerender.gif)</kbd>
+
+Авторизация проходит, но как компонент переобновить? И как обновить другие компоненты. Если например прошел авторизацию, то должны появится новые пункты меню и должен появится в контенте другого компонента, опирающегося на наличие токена авторизации, новый див с текстом.
 
 ## Maybe would be needed - my garbage list
 
