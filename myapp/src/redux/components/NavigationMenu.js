@@ -1,9 +1,7 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import LoginForm from './LoginForm';
-import LogoutForm from './LogoutForm';
-//import SignupForm from './SignupForm';
+import AuthorizeForm from './AuthorizeForm';
+import DeauthorizeForm from './DeauthorizeForm';
 
 const mapStateToProps = (state) => {
   return { restApiToken: state.restApiToken };
@@ -14,11 +12,10 @@ class ReactNavigationMenu extends React.Component {
     const { restApiToken } = this.props;
     return (
       <>
-      {restApiToken ? <LogoutForm /> : <LoginForm />}
+      {restApiToken ? <DeauthorizeForm /> : <AuthorizeForm />}
       </>
     );
   }
 };
 
-const ReduxNavigationMenu = connect(mapStateToProps)(ReactNavigationMenu);
-export default ReduxNavigationMenu;
+export default connect(mapStateToProps)(ReactNavigationMenu);
