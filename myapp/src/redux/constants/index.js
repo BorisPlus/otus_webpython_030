@@ -13,6 +13,11 @@ export const REQUEST_TOKEN_FAIL = "REQUEST_TOKEN_FAIL";
 export const AUTH_BEGIN = "AUTH_BEGIN";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILURE = "AUTH_FAILURE";
+
+export const DEAUTH_BEGIN = "DEAUTH_BEGIN";
+export const DEAUTH_SUCCESS = "DEAUTH_SUCCESS";
+export const DEAUTH_FAILURE = "DEAUTH_FAILURE";
+
 export const DEAUTHORIZE = "DEAUTHORIZE";
 
 export const BACKEND_API_URL = "http://localhost:8000";
