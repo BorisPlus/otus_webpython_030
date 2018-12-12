@@ -2,7 +2,6 @@
 
 Login And Registration on Django  Redux&React separately.
 
-**Почему после авторизации компонент(-ы) не обновляе(-ю)тся?**
 
 ## Checking
 
@@ -28,14 +27,9 @@ Worked urls:
 
 ## Why not rerender page
 
-Help. I just need somebody help.
 
 Look GIF-animation:
-<kbd>![not_rerender.png](README.files/img/screencasts/not_rerender.gif)</kbd>
-
-Почему после авторизации компонент не обновляется? Логин user\user
-
-Авторизация проходит, но как компонент переобновить? И как обновить другие компоненты. Если например прошел авторизацию, то должны появится новые пункты меню и должен появится в контенте другого компонента, опирающегося на наличие токена авторизации, новый див с текстом.
+<kbd>![react_redux.gif.png](README.files/img/screencasts/react_redux.gif.gif)</kbd>
 
 ## Maybe would be needed - my garbage list
 
