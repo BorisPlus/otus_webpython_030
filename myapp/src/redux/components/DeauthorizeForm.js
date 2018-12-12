@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Deauthorize } from "../actions/index";
 
 const mapStateToProps = (state) => {
-  return { username: state.authReducer.username };
+  return ( { username: state.authReducer.username } );
 };
 
 const mapDispatchToProps = dispatch => {

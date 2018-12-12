@@ -19,7 +19,7 @@ export function Authorize(username, password) {
   return dispatch => {
     dispatch(authBegin());
     // для отладки искусственно увеличиваю время ответа
-    sleeping(1000).then(() => {
+    sleeping(2000).then(() => {
       fetch( '' + BACKEND_API_URL + '/token-auth/', {
         method: 'POST',
         headers: {
@@ -44,9 +44,9 @@ export const authBegin = () => ({
   payload: { authorizing: true }
 });
 
-export const authSuccess = ( username, jwt ) => ({
+export const authSuccess = ( username, restApiToken ) => ({
   type: AUTH_SUCCESS,
-  payload: {  username: username, restApiToken: jwt }
+  payload: {  username, restApiToken }
 });
 
 export const authFailure = error => ({

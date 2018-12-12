@@ -17,7 +17,7 @@ class ReactNavigationMenu extends React.Component {
     const { restApiToken } = this.props;
     return (
       <>
-      { restApiToken ? <DeauthorizeForm /> : <AuthorizeForm /> }
+      { restApiToken ? < DeauthorizeForm /> : < AuthorizeForm /> }
       </>
     );
   }

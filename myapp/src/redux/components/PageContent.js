@@ -20,15 +20,14 @@ class ReactPageContent extends React.Component {
 //    }
     console.groupEnd();
     const {restApiToken, username} = this.props;
+//    console.log('username+ = ', username);
     return (
       <div id="content">
         <div className='center'>
           <NavigationMenu/>
         </div>
         <div className='center'>
-          { restApiToken } <br/>
-          { username } <br/>
-          { restApiToken ? "Well coming, dear "+ username : 'Some public content o component should be here :)' }
+          { restApiToken ? "Well coming, my dear "+ username : 'Some public content of component should be here :)' }
         </div>
       </div>
     );
