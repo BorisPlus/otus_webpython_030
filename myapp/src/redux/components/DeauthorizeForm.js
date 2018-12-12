@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Deauthorize } from "../actions/index";
 
 const mapStateToProps = (state) => {
-  return { username: state.username };
+  return { username: state.authReducer.username };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -14,6 +14,10 @@ const mapDispatchToProps = dispatch => {
 
 class ReactDeauthorizeForm extends React.Component {
   render() {
+    console.group('ReactDeauthorizeForm rendering...');
+    console.log('this.props = ' + JSON.stringify(this.props));
+    console.log('this.state = ' + JSON.stringify(this.state));
+    console.groupEnd();
     const { username } = this.props;
     return (
       <>

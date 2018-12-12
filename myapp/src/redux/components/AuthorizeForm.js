@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Authorize } from "../actions/index";
 
-
+//"authReducer":{"username":null,"errorMessage":null,"restApiToken":null,"authorizing"
 const mapStateToProps = state => ({
-    username: state.username,
-    password: state.password,
-    authorizing: state.authorizing,
-    isValid: state.isValid
+    username: state.authReducer.username,
+    password: state.authReducer.password,
+    authorizing: state.authReducer.authorizing,
+    isValid: state.authReducer.isValid
 });
 
 const mapDispatchToProps = dispatch => {
@@ -33,13 +33,12 @@ class ReactAuthForm extends React.Component {
 
   handleSubmit = (e, data) => {
     e.preventDefault();
+    console.group('ReactAuthForm.handleSubmit()');
+    console.log('this.props = ' + JSON.stringify(this.props));
+    console.log('this.state = ' + JSON.stringify(this.state));
+    console.groupEnd();
     const { username, password } = this.state;
-    console.log('ReactAuthForm: handleSubmit');
     this.props.Authorize(username, password);
-  }
-
-  componentDidMount() {
-    console.log('componentDidMount ' + this.props.username);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -47,8 +46,12 @@ class ReactAuthForm extends React.Component {
   }
 
   render() {
-    console.log('ReactAuthForm rendering...');
-    const { username, password, isValid, authorizing } = this.state;
+    console.group('ReactAuthForm rendering...');
+    console.log('this.props = ' + JSON.stringify(this.props));
+    console.log('this.state = ' + JSON.stringify(this.state));
+    console.groupEnd();
+    const { username, password, isValid } = this.state;
+    const { authorizing } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -69,8 +72,9 @@ class ReactAuthForm extends React.Component {
         />
         <input
           type="submit"
+          data-is_sending={ authorizing ?"yes":"no" }
           value={ authorizing ? "Authorizing..." : "Let's Authorize" }
-          disabled={!isValid || authorizing} />
+          disabled={ !isValid || authorizing } />
       </form>
     );
   }

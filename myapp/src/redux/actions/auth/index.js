@@ -2,7 +2,10 @@ import {
     AUTH_BEGIN,
     AUTH_SUCCESS,
     AUTH_FAILURE,
-    DEAUTHORIZE,
+    DEAUTH_BEGIN,
+    DEAUTH_SUCCESS,
+    DEAUTH_FAILURE,
+//    DEAUTHORIZE,
     BACKEND_API_URL
 } from "../../constants/index";
 
@@ -16,7 +19,7 @@ export function Authorize(username, password) {
   return dispatch => {
     dispatch(authBegin());
     // для отладки искусственно увеличиваю время ответа
-    sleeping(10000).then(() => {
+    sleeping(1000).then(() => {
       fetch( '' + BACKEND_API_URL + '/token-auth/', {
         method: 'POST',
         headers: {
@@ -27,30 +30,50 @@ export function Authorize(username, password) {
       .then(handleErrors)
       .then(response => response.json())
       .then(json => {
-        dispatch(authSuccess(json.token));
+        dispatch(authSuccess(username, json.token));
         return json.token;
       })
-      .catch(error => dispatch(authFailure(error)));
+      .catch(error => {dispatch(authFailure(error));
+      });
     });
   };
 };
 
 export const authBegin = () => ({
-  type: AUTH_BEGIN
+  type: AUTH_BEGIN,
+  payload: { authorizing: true }
 });
 
-export const authSuccess = restApiToken => ({
+export const authSuccess = ( username, jwt ) => ({
   type: AUTH_SUCCESS,
-  payload: { restApiToken }
+  payload: {  username: username, restApiToken: jwt }
 });
 
 export const authFailure = error => ({
   type: AUTH_FAILURE,
-  payload: { error }
+  payload: { error: error.message }
 });
 
-//
 
-export const Deauthorize = () => ({
-  type: DEAUTHORIZE
+export function Deauthorize() {
+  return dispatch => {
+    dispatch(deathorizeBegin());
+    sleeping(1000).then(() => {
+        dispatch(deathorizeSuccess());
+    })
+    .catch(error => {dispatch(deathorizeFailure(error))});
+  };
+};
+
+export const deathorizeBegin = () => ({
+  type: DEAUTH_BEGIN
 });
+
+export const deathorizeSuccess = () => ({
+  type: DEAUTH_SUCCESS
+});
+
+export const deathorizeFailure = () => ({
+  type: DEAUTH_FAILURE
+});
+

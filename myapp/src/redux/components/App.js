@@ -1,14 +1,22 @@
 import React from 'react';
-import NavigationMenu from './NavigationMenu';
+import PageContent from './PageContent';
 
 class App extends React.Component {
   render() {
-    const {errorMessage} = this.props;
+    console.group('App rendering...');
+    console.log('this.props = ' + JSON.stringify(this.props));
+    console.log('this.state = ' + JSON.stringify(this.state));
+    console.log('this.props.state = ' + JSON.stringify(this.props.state));
+    const error = this.props.state.authReducer.error ? this.props.state.authReducer.error : null;
+    if (error) {
+        console.log('error = ' + error);
+    }
+    console.groupEnd();
     return (
       <div className="App">
-        {errorMessage ? <div className={`error center`}>{errorMessage}</div> : ''}
+        { error ? <div className={`error center`}>{error}</div> : '' }
         <div className='center'>
-          <NavigationMenu/>
+          <PageContent/>
         </div>
       </div>
     );
