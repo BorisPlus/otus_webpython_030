@@ -42,7 +42,7 @@ form {
     margin: 0;
 }
 input[type=text], input[type=password], select {
-    width: 30%;
+    width: 20%;
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
@@ -50,7 +50,7 @@ input[type=text], input[type=password], select {
     margin: 1%;
 }
 input[type=submit] {
-    width: 30%;
+    width: 20%;
     color: #fff;
     display: inline-block;
     border: 1px solid #000;
