@@ -1,5 +1,6 @@
 import React from 'react';
 import PageContent from './PageContent';
+import WhatIsTheTimeNow from "./features/WhatIsTheTimeNow";
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,9 @@ class App extends React.Component {
     return (
       <div className="App">
         { error ? <div className={`error center`}>{error}</div> : '' }
+        <div className='center'>
+          <WhatIsTheTimeNow/>
+        </div>
         <div className='center'>
           <PageContent/>
         </div>

@@ -1,8 +1,8 @@
 # otus_webpython_023
 
 Login And Registration on Django  Redux&React separately.
-
-
+Help me: Question, see http://localhost:8000/api/ver.0/, 
+but response from Redux is "Response status is 401"
 ## Checking
 
 
@@ -39,8 +39,11 @@ Look GIF-animation:
  * npm install --save react react-dom prop-types redux react-redux
  * npm install --save-dev react redux-thunk
  * npm install --save-dev react redux-logger
+ * npm install --save-dev weak-key
+ 
  * npm install -i webpack webpack-cli
  * npm install --save-dev babel-core babel-loader babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-decorators-legacy 
+ * npm install moment --save
  * npm install babel-loader@next
  * npm install --save-dev @babel/core@7
  * npm install --save-dev @babel/core@7
@@ -49,7 +52,8 @@ Look GIF-animation:
  * npm install --save-dev babel-plugin-transform-class-properties
  * npm install --save-dev @babel/preset-env
  * npm install --save-dev @babel/preset-react
- 
+
+
 ## Author
 
 * https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a

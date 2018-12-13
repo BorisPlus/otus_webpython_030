@@ -1,7 +1,7 @@
 import NavigationMenu from './NavigationMenu';
 import { connect } from "react-redux"
 import React from 'react';
-
+import MessageList from "./flood/MessageList";
 
 const mapStateToProps = (state) => ({
     restApiToken: state.authReducer.restApiToken,
@@ -24,10 +24,11 @@ class ReactPageContent extends React.Component {
     return (
       <div id="content">
         <div className='center'>
+          { restApiToken ? "Well coming, my dear \"" + username + "\"." : 'Login for the flooooooooooood :)' }
           <NavigationMenu/>
         </div>
         <div className='center'>
-          { restApiToken ? "Well coming, my dear "+ username : 'Some public content of component should be here :)' }
+          <MessageList endpoint="/api/ver.0/message/list" />
         </div>
       </div>
     );

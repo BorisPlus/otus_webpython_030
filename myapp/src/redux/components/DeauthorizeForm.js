@@ -21,7 +21,7 @@ class ReactDeauthorizeForm extends React.Component {
     const { username } = this.props;
     return (
       <>
-        <a href="./logout"> ВЫЙТИ ({username}) </a>
+        <input type='submit' href="./logout" value={'Exit account ('+ username +')'} />
       </>
     );
   }

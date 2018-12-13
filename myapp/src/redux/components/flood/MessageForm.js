@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import T from "prop-types";
 export default class MessageForm extends Component {
   static propTypes = {
-    endpoint: PropTypes.string.isRequired
+    endpoint: T.string.isRequired
   };
   state = {
-    name: "",
-    message: "",
+    text: "",
     valid: false,
     sending: false,
     last_response_status_ok: true,
@@ -16,16 +15,16 @@ export default class MessageForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   componentWillUpdate(nextProps, nextState) {
-    nextState.valid = nextState.name && nextState.message;
+    nextState.valid = true && nextState.text;
   }
   handleSubmit = e => {
     e.preventDefault();
     this.setState({ sending: true });
-    const { name, message } = this.state;
-    const flood = { name, message };
+    const { text } = this.state;
+//    const text = { text };
     const conf = {
       method: "post",
-      body: JSON.stringify(flood),
+      body: JSON.stringify(text),
       headers: new Headers({ "Content-Type": "application/json" })
     };
     fetch(this.props.endpoint, conf)
@@ -38,14 +37,13 @@ export default class MessageForm extends Component {
                 last_response_status_text: response.statusText
             });
             if (response.ok) {
-                this.setState({ name: this.state.name, message: "" });
+                this.setState({ text: "" });
             }
         }
       },
       error => {
         this.setState({
-            name: this.state.name,
-            message: this.state.message
+            text: this.state.text
         });
         setTimeout(() => {
             this.setState({
@@ -58,7 +56,7 @@ export default class MessageForm extends Component {
     )
   };
   render() {
-    const { name, message } = this.state;
+    const { text } = this.state;
     return (
       <div className="newline">
       <div className="form">
@@ -67,19 +65,10 @@ export default class MessageForm extends Component {
           <input
             className="input"
             type="text"
-            name="name"
-            placeholder="Enter your nickname"
+            name="text"
+            placeholder="Enter text..."
             onChange={this.handleChange}
-            value={name}
-            required
-          />
-          <input
-            className="input"
-            type="text"
-            name="message"
-            placeholder="Enter new message here"
-            onChange={this.handleChange}
-            value={message}
+            value={text}
             required
           />
           <input
@@ -88,7 +77,7 @@ export default class MessageForm extends Component {
             className="submit"
             type="submit"
             name="submit"
-            value={this.state.sending ? "Sending..." : "To send"}
+            value={this.state.sending ? "Sending..." : "Send"}
           />
         </form>
       </div>
