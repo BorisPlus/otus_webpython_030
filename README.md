@@ -2,7 +2,8 @@
 
 Login And Registration on Django  Redux&React separately.
 Help me: Question, see http://localhost:8000/api/ver.0/, 
-but response from Redux is "Response status is 401"
+but response from Redux is "Response status is 401"? 
+How add JWT-token to request>
 ## Checking
 
 
