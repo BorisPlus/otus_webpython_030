@@ -42,7 +42,7 @@ export default class MessageList extends Component {
     if (!loaded) {
       return <p>{placeholder}</p>;
     }
-    if (loaded && typeof messages === 'undefined') {
+    if (loaded && typeof messages !== 'undefined') {
       return <p>{placeholder}</p>;
     }
     if (loaded && messages.length === 0) {
