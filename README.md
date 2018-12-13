@@ -53,7 +53,7 @@ Look GIF-animation:
 ## Author
 
 * https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
-* **BorisPlus** - [https://github.com/BorisPlus/otus_webpython_023](https://github.com/BorisPlus/otus_webpython_025)
+* **BorisPlus** - [https://github.com/BorisPlus/otus_webpython_030](https://github.com/BorisPlus/otus_webpython_025)
 
 ## License
 
