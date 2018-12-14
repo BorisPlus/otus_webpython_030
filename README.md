@@ -1,33 +1,26 @@
 # otus_webpython_023
 
 Login And Registration on Django  Redux&React separately.
-Help me: Question, see http://localhost:8000/api/ver.0/, 
-but response from Redux is "Response status is 401"? 
-How add JWT-token to request
 
-Something like this ?
-```bash
-componentDidMount() {
-    if (token) {
-        fetch('http://localhost:8000/core_app/current_user/', {
-            headers: {
-                Authorization: `JWT ${token}`
-            }
-        })
-        .then(res => res.json())
-        .then(json => {this.setState({ username: json.username })});
-    }
-}
-```
+This is not the clean mono-repository.
+It contains real two parts - **backend** and **frontend**. They are independent and communicated by API.
+
+**Need help:** 
+1. For check authorization during work with **frontend** I use localStorage for store JWT. Is it right?
+2. How can I post message WITH foreign key (`user_id` stored at localStorage)?
+
+Look at its GIF-animation:
+<kbd>![react_redux.gif.png](README.files/img/screencasts/react_redux_2.gif)</kbd>
+
 ## Checking
 
 
-Run at first terminal window:
+Run **backend** at first terminal window:
 ```
 python3 manage.py runserver
 ```
 
-Run at second terminal window:
+Run **frontend** at second terminal window:
 
 ```
 cd myapp/ && npm i && npm start
@@ -73,7 +66,7 @@ Look GIF-animation:
 ## Author
 
 * https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
-* **BorisPlus** - [https://github.com/BorisPlus/otus_webpython_030](https://github.com/BorisPlus/otus_webpython_025)
+* **BorisPlus** - [https://github.com/BorisPlus/otus_webpython_030](https://github.com/BorisPlus/otus_webpython_030)
 
 ## License
 
