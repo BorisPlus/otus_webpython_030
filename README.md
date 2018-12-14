@@ -29,8 +29,8 @@ cd myapp/ && npm i && npm start
 Worked urls:
 * Django (mysite)
   * http://127.0.0.1:8000/
-  * http://127.0.0.1:8000/core_app/users/
-  * http://127.0.0.1:8000/core_app/current_user/
+  * http://127.0.0.1:8000/token-auth/
+  * http://127.0.0.1:8000/api/ver.0/
 * React (myapp)
   * http://127.0.0.1:3000/
 
