@@ -1,28 +1,43 @@
 import React, { Component } from "react";
 import T from "prop-types";
 import Message from "./Message";
-import fetch_rest from "../../api/data_fetcher";
+import fetchRestJson from "../../api/api";
 import key from "weak-key";
-export default class MessageList extends Component {
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => ({
+    state: state,
+    restApiToken: state.authReducer.restApiToken,
+    username: state.authReducer.username
+});
+
+class MessageList extends Component {
   static propTypes = {
     endpoint: T.string.isRequired,
-    token: T.string.isRequired,
   };
   state = {
     data: [],
     loaded: false,
-    placeholder: "Loading..."
+    placeholder: "Loading...",
+    restApiToken: null,
+    username: null
   };
 
   loadDataFromServer(component) {
-    fetch_rest(component.props.endpoint, component.props.token)
+    fetchRestJson(component.props.endpoint)
     .then(messages => component.setState({ messages: messages, loaded: true }))
-    .catch(error => component.setState({ placeholder: '' + error.message }))
-    ;
-  }
+    .catch(error => component.setState({ error: error }))
+  };
 
-//  loadDataFromServer(component) {
-//    fetch('http://localhost:8000/api/ver.0/message/list')
+//  REFACTORED
+//  loadDataFromServerVersion(component) {
+//    const restApiToken = component.props.restApiToken;
+//    const rest_url = 'http://localhost:8000/api/ver.0/message/list';
+//    fetch(rest_url, {
+//        headers: {
+//            Authorization: `JWT ${localStorage.getItem('restApiToken')}`
+//        }
+//      })
 //    .then(response => {
 //      if (response.status !== 200) {
 //        console.log('response.status ' + response.status);
@@ -35,14 +50,14 @@ export default class MessageList extends Component {
 
   componentDidMount() {
     this.loadDataFromServer(this);
-    setInterval(this.loadDataFromServer.bind(null, this), 5000);
+//    setInterval(this.loadDataFromServer.bind(null, this), 5000);
   }
   render() {
     const { messages, loaded, placeholder } = this.state;
     if (!loaded) {
       return <p>{placeholder}</p>;
     }
-    if (loaded && typeof messages !== 'undefined') {
+    if (loaded && typeof messages === 'undefined') {
       return <p>{placeholder}</p>;
     }
     if (loaded && messages.length === 0) {
@@ -50,7 +65,7 @@ export default class MessageList extends Component {
     }
     const messages_obj = messages.map((message) =>
       <div key={key(message)}>
-        <Message name={message.owner} message={message.text} created_at={message.created_at} />
+        <Message owner={message.owner} text={message.text} created_at={message.created_at} />
       </div>
     );
     return (
@@ -59,4 +74,6 @@ export default class MessageList extends Component {
       </div>
     );
   }
-}
+};
+
+export default connect(mapStateToProps)(MessageList);

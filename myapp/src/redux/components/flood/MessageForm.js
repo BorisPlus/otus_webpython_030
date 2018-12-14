@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import T from "prop-types";
+import fetchRestJson from "../../api/api";
+
 export default class MessageForm extends Component {
   static propTypes = {
     endpoint: T.string.isRequired
@@ -21,13 +23,20 @@ export default class MessageForm extends Component {
     e.preventDefault();
     this.setState({ sending: true });
     const { text } = this.state;
-//    const text = { text };
-    const conf = {
+    const data = {
+        owner: localStorage.getItem('user_id'),
+        text: text
+    };
+    console.log('Send data ' + JSON.stringify(data));
+    const params = {
       method: "post",
-      body: JSON.stringify(text),
+      body: JSON.stringify(data),
       headers: new Headers({ "Content-Type": "application/json" })
     };
-    fetch(this.props.endpoint, conf)
+    console.log('... to endpoint ' + this.props.endpoint);
+//    fetch(this.props.endpoint, conf)
+
+    fetchRestJson(this.props.endpoint, params)
     .then(
       response => {
         if (response.status) {

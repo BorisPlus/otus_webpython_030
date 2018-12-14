@@ -21,7 +21,7 @@ class ReactNavigationMenu extends React.Component {
       { restApiToken ?
         (  <>
             <DeauthorizeForm />
-            <MessageForm endpoint="api/ver.0/message/create" />
+            <MessageForm endpoint="/api/ver.0/message/create" />
         </> ) :
         < AuthorizeForm /> }
       </>

@@ -24,7 +24,7 @@ class ReactPageContent extends React.Component {
     return (
       <div id="content">
         <div className='center'>
-          { restApiToken ? "Well coming, my dear \"" + username + "\"." : 'Login for the flooooooooooood :)' }
+          { restApiToken ? "Well coming, my dear \"" + username + "\"." : 'Authorize for the fl.oOo.d :)' }
           <NavigationMenu/>
         </div>
         <div className='center'>

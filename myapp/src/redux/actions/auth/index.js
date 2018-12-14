@@ -31,6 +31,8 @@ export function Authorize(username, password) {
       .then(response => response.json())
       .then(json => {
         dispatch(authSuccess(username, json.token));
+        localStorage.setItem('restApiToken', json.token);
+        localStorage.setItem('user_id', json.user_id);
         return json.token;
       })
       .catch(error => {dispatch(authFailure(error));
