@@ -1,4 +1,4 @@
-# otus_webpython_023
+# otus_webpython_030
 
 Login And Registration on Django  Redux&React separately.
 
