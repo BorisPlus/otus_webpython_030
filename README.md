@@ -1,16 +1,13 @@
 # otus_webpython_030
 
-Login And Registration on Django  Redux&React separately.
+Login And Registration on "Django" + "Redux&React" separately.
 
-This is not the clean mono-repository.
+This is not the clean mono-repository!
+
 It contains real two parts - **backend** and **frontend**. They are independent and communicated by API.
 
-**Need help:** 
-1. For check authorization during work with **frontend** I use localStorage for store JWT. Is it right?
-2. How can I post message WITH foreign key (`user_id` stored at localStorage)?
-
 Look at its GIF-animation:
-<kbd>![react_redux.gif.png](README.files/img/screencasts/react_redux_2.gif)</kbd>
+<kbd>![react_redux_3.gif](README.files/img/screencasts/react_redux_3.gif)</kbd>
 
 ## Checking
 
