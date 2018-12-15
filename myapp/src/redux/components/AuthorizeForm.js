@@ -61,6 +61,7 @@ class ReactAuthForm extends React.Component {
           value={username}
           onChange={this.handleChange}
           disabled={authorizing}
+          autoFocus
         />
         <input
           type="password"

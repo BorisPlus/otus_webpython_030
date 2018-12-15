@@ -24,6 +24,7 @@ class MessageList extends Component {
   };
 
   loadDataFromServer(component) {
+    console.log(component.props.endpoint)
     fetchRestJson(component.props.endpoint)
     .then(messages => component.setState({ messages: messages, loaded: true }))
     .catch(error => component.setState({ error: error }))
@@ -50,7 +51,7 @@ class MessageList extends Component {
 
   componentDidMount() {
     this.loadDataFromServer(this);
-//    setInterval(this.loadDataFromServer.bind(null, this), 5000);
+    setInterval(this.loadDataFromServer.bind(null, this), 5000);
   }
   render() {
     const { messages, loaded, placeholder } = this.state;

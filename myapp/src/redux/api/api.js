@@ -15,7 +15,7 @@ export default function fetchRestJson(restUrl, objectedParams = null) {
     const params = objectedParams ? objectedParams : defaultParams;
     return fetch(fullRestUrl, params)
     .then(response => {
-      if (response.status !== 200) {
+      if (!response.ok) {
         // Почему сюда нельзя написать: console.log('response.status ' + response.status);
         throw new ResponseStatusException("Response status is " + response.status);
       }

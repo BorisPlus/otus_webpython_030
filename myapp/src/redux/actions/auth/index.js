@@ -30,9 +30,9 @@ export function Authorize(username, password) {
       .then(handleErrors)
       .then(response => response.json())
       .then(json => {
-        dispatch(authSuccess(username, json.token));
         localStorage.setItem('restApiToken', json.token);
         localStorage.setItem('user_id', json.user_id);
+        dispatch(authSuccess(username, json.token));
         return json.token;
       })
       .catch(error => {dispatch(authFailure(error));
@@ -61,21 +61,27 @@ export function Deauthorize() {
   return dispatch => {
     dispatch(deathorizeBegin());
     sleeping(1000).then(() => {
+        localStorage.removeItem('restApiToken');
+        localStorage.removeItem('user_id');
         dispatch(deathorizeSuccess());
+        return true;
     })
     .catch(error => {dispatch(deathorizeFailure(error))});
   };
 };
 
 export const deathorizeBegin = () => ({
-  type: DEAUTH_BEGIN
+  type: DEAUTH_BEGIN,
+  payload: { authorizing: true }
 });
 
 export const deathorizeSuccess = () => ({
-  type: DEAUTH_SUCCESS
+  type: DEAUTH_SUCCESS,
+  payload: { }
 });
 
-export const deathorizeFailure = () => ({
-  type: DEAUTH_FAILURE
+export const deathorizeFailure = error => ({
+  type: DEAUTH_FAILURE,
+  payload: { error: error.message }
 });
 

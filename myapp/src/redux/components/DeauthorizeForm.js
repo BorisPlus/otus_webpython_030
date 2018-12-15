@@ -13,6 +13,12 @@ const mapDispatchToProps = dispatch => {
 };
 
 class ReactDeauthorizeForm extends React.Component {
+
+  handleClick = (e) => {
+    e.preventDefault();
+    this.props.Deauthorize();
+  }
+
   render() {
     console.group('ReactDeauthorizeForm rendering...');
     console.log('this.props = ' + JSON.stringify(this.props));
@@ -21,7 +27,11 @@ class ReactDeauthorizeForm extends React.Component {
     const { username } = this.props;
     return (
       <>
-        <input type='submit' href="./logout" value={'Exit account ('+ username +')'} />
+        <input
+            onClick={this.handleClick}
+            type='submit' href="./logout"
+            className="attention"
+            value={'Exit account ('+ username +')'} />
       </>
     );
   }

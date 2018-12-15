@@ -71,3 +71,18 @@ input[type=submit]:disabled {
 input[data-is_sending="yes"] {
     cursor: wait !important;
 }
+
+input[type=submit].attention {
+    width: 20%;
+    color: #fff;
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #990000;
+    margin: 1%;
+}
+input[type=submit].attention:hover {
+    background-color: #ff0000;
+    color: #000;
+}

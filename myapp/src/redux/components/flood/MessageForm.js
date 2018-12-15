@@ -3,9 +3,11 @@ import T from "prop-types";
 import fetchRestJson from "../../api/api";
 
 export default class MessageForm extends Component {
+
   static propTypes = {
     endpoint: T.string.isRequired
   };
+
   state = {
     text: "",
     valid: false,
@@ -13,12 +15,15 @@ export default class MessageForm extends Component {
     last_response_status_ok: true,
     last_response_status_text: null,
   };
+
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   componentWillUpdate(nextProps, nextState) {
     nextState.valid = true && nextState.text;
   }
+
   handleSubmit = e => {
     e.preventDefault();
     this.setState({ sending: true });
@@ -34,35 +39,30 @@ export default class MessageForm extends Component {
       headers: new Headers({ "Content-Type": "application/json" })
     };
     console.log('... to endpoint ' + this.props.endpoint);
-//    fetch(this.props.endpoint, conf)
 
     fetchRestJson(this.props.endpoint, params)
-    .then(
-      response => {
-        if (response.status) {
-            this.setState({
-                sending: false,
-                last_response_status_ok: response.ok,
-                last_response_status_text: response.statusText
-            });
-            if (response.ok) {
-                this.setState({ text: "" });
-            }
-        }
-      },
-      error => {
+    .then( json => {
+      // console.log('... response.status ' + response.status);
+      console.log('... response json ' + json);
+      this.setState({
+        sending: false,
+        last_response_status_ok: true,
+        last_response_status_text: null,
+        text: ''
+      });
+    })
+    .catch(error => {
+      this.setState({
+        text: this.state.text
+      });
+      setTimeout(() => {
         this.setState({
-            text: this.state.text
+          last_response_status_ok: false,
+          last_response_status_text: ''+error,
+          sending: false
         });
-        setTimeout(() => {
-            this.setState({
-                last_response_status_ok: false,
-                last_response_status_text: ''+error,
-                sending: false
-            });
-        }, 1000);
-      }
-    )
+      }, 1000);
+    });
   };
   render() {
     const { text } = this.state;
@@ -79,6 +79,7 @@ export default class MessageForm extends Component {
             onChange={this.handleChange}
             value={text}
             required
+            autoFocus
           />
           <input
             disabled={!this.state.valid || this.state.sending}
