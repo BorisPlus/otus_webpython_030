@@ -24,18 +24,13 @@ cd myapp/ && npm i && npm start
 ```
 
 Worked urls:
-* Django (mysite)
+* Django (mysite) - **backend** part
   * http://127.0.0.1:8000/
   * http://127.0.0.1:8000/token-auth/
   * http://127.0.0.1:8000/api/ver.0/
-* React (myapp)
+* React (myapp) - **frontend** part
   * http://127.0.0.1:3000/
 
-## Why not rerender page
-
-
-Look GIF-animation:
-<kbd>![react_redux.gif.png](README.files/img/screencasts/react_redux.gif.gif)</kbd>
 
 ## Maybe would be needed - my garbage list
 
