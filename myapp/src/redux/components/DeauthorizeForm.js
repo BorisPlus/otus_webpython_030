@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Deauthorize } from "../actions/index";
 
-const mapStateToProps = (state) => {
-  return ( { username: state.authReducer.username } );
+const mapStateToProps = () => {
+  return ( { } );
 };
 
 const mapDispatchToProps = dispatch => {
@@ -24,14 +24,15 @@ class ReactDeauthorizeForm extends React.Component {
     console.log('this.props = ' + JSON.stringify(this.props));
     console.log('this.state = ' + JSON.stringify(this.state));
     console.groupEnd();
-    const { username } = this.props;
+    const { deauthorizing } = this.props;
     return (
       <>
         <input
             onClick={this.handleClick}
-            type='submit' href="./logout"
+            type='submit' href="#"
             className="attention"
-            value={'Exit account ('+ username +')'} />
+            disabled={ deauthorizing }
+            value={'Exit account ('+ localStorage.getItem('username') +')'} />
       </>
     );
   }

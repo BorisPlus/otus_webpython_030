@@ -14,13 +14,8 @@ class ReactPageContent extends React.Component {
     console.log('this.props = ' + JSON.stringify(this.props));
     console.log('this.state = ' + JSON.stringify(this.state));
     console.log('this.props.state = ' + JSON.stringify(this.props.state));
-//    const error = this.props.state.authReducer.error ? this.props.state.authReducer.error : null;
-//    if (error) {
-//        console.log('error = ' + error);
-//    }
     console.groupEnd();
     const {restApiToken, username} = this.props;
-//    console.log('username+ = ', username);
     return (
       <div id="content">
         <div className='center'>

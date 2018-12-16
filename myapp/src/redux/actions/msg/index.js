@@ -1,11 +1,8 @@
 import {
-    AUTH_BEGIN,
-    AUTH_SUCCESS,
-    AUTH_FAILURE,
-    DEAUTH_BEGIN,
-    DEAUTH_SUCCESS,
-    DEAUTH_FAILURE,
-//    DEAUTHORIZE,
+    SEND_BEGIN,
+    SEND_SUCCESS,
+    SEND_FAILURE,
+
     BACKEND_API_URL
 } from "../../constants/index";
 

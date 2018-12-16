@@ -8,13 +8,15 @@ import {connect} from 'react-redux';
 const mapStateToProps = (state) => ({
     state: state,
     restApiToken: state.authReducer.restApiToken,
-    username: state.authReducer.username
+    username: state.authReducer.username,
+    needToBeRefresh: false
 });
 
 class MessageList extends Component {
   static propTypes = {
     endpoint: T.string.isRequired,
   };
+
   state = {
     data: [],
     loaded: false,
@@ -24,35 +26,17 @@ class MessageList extends Component {
   };
 
   loadDataFromServer(component) {
-    console.log(component.props.endpoint)
+    console.log(component.props.endpoint);
     fetchRestJson(component.props.endpoint)
     .then(messages => component.setState({ messages: messages, loaded: true }))
     .catch(error => component.setState({ error: error }))
   };
 
-//  REFACTORED
-//  loadDataFromServerVersion(component) {
-//    const restApiToken = component.props.restApiToken;
-//    const rest_url = 'http://localhost:8000/api/ver.0/message/list';
-//    fetch(rest_url, {
-//        headers: {
-//            Authorization: `JWT ${localStorage.getItem('restApiToken')}`
-//        }
-//      })
-//    .then(response => {
-//      if (response.status !== 200) {
-//        console.log('response.status ' + response.status);
-//        return component.setState({ placeholder: response.status });
-//      }
-//      return response.json();
-//    })
-//    .then(messages => component.setState({ messages: messages, loaded: true }));
-//  }
-
   componentDidMount() {
     this.loadDataFromServer(this);
     setInterval(this.loadDataFromServer.bind(null, this), 5000);
   }
+
   render() {
     const { messages, loaded, placeholder } = this.state;
     if (!loaded) {

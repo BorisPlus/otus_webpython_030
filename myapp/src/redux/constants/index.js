@@ -21,3 +21,7 @@ export const DEAUTH_FAILURE = "DEAUTH_FAILURE";
 export const DEAUTHORIZE = "DEAUTHORIZE";
 
 export const BACKEND_API_URL = "http://localhost:8000";
+
+export const SEND_BEGIN = "SEND_BEGIN";
+export const SEND_SUCCESS = "SEND_SUCCESS";
+export const SEND_FAILURE = "SEND_FAILURE";
