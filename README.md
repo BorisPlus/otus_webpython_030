@@ -9,6 +9,9 @@ It contains real two parts - **backend** and **frontend**. They are independent 
 Look at its GIF-animation:
 <kbd>![react_redux_3.gif](README.files/img/screencasts/react_redux_3.gif)</kbd>
 
+Refactor:
+<kbd>![react_redux_4.gif](README.files/img/screencasts/react_redux_4.gif)</kbd>
+
 ## Checking
 
 
