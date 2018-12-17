@@ -1,84 +1,85 @@
 import {
-    SEND_BEGIN,
-    SEND_SUCCESS,
-    SEND_FAILURE,
-
-    BACKEND_API_URL
-} from "../../constants/index";
-
+  SEND_BEGIN,
+  SEND_SUCCESS,
+  SEND_FAILURE,
+  LOAD_BEGIN,
+  LOAD_SUCCESS,
+  LOAD_FAILURE,
+} from "../../constants/actions/index";
 import {
-    handleErrors,
-    sleeping
-} from "../_utils/index";
+  sleeping,
+  fetchRestJson,
+  defaultObjectedParams
+} from "../../api/api";
 
+export function Send(text) {
+  console.group('actions.msg.index.Send:');
+  console.log('text: ' + text);
+  console.log('user_id: ' + localStorage.getItem('user_id'));
+  console.groupEnd();
 
-export function Authorize(username, password) {
+  let params = defaultObjectedParams;
+  params.method = 'POST';
+  params.body = JSON.stringify({owner_id: localStorage.getItem('user_id'), text: text});
+
   return dispatch => {
-    dispatch(authBegin());
-    // для отладки искусственно увеличиваю время ответа
+    dispatch(sendBegin());
+    // для демонстрации искусственно увеличиваю время ответа
     sleeping(2000).then(() => {
-      fetch( '' + BACKEND_API_URL + '/token-auth/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username: username, password: password})
-      })
-      .then(handleErrors)
+      fetchRestJson('/api/ver.0/message/create', params)
+      .then(() => dispatch(sendSuccess()))
+      .catch(error => dispatch(sendFailure(error)))
+    });
+  };
+
+};
+
+export const sendBegin = () => ({
+  type: SEND_BEGIN,
+  payload: { sending: true }
+});
+
+export const sendSuccess = () => ({
+  type: SEND_SUCCESS,
+  payload: { sending: false, text: null, kick: new Date() }
+});
+
+export const sendFailure = error => ({
+  type: SEND_FAILURE,
+  payload: { errorMessage: error.message, sending: false, kick: new Date() }
+});
+
+
+export function Load() {
+  console.group('actions.msg.index.Load:');
+  console.groupEnd();
+
+  return dispatch => {
+    dispatch(loadBegin());
+    // для демонстрации искусственно увеличиваю время ответа
+    sleeping(2000).then(() => {
+      fetchRestJson( '/api/ver.0/message/list')
       .then(response => response.json())
       .then(json => {
-        localStorage.setItem('restApiToken', json.token);
-        localStorage.setItem('user_id', json.user_id);
-        dispatch(authSuccess(username, json.token));
-        return json.token;
+        dispatch(loadSuccess(json));
+        return;
       })
-      .catch(error => {dispatch(authFailure(error));
-      });
+      .catch(error => dispatch(loadFailure(error)));
     });
   };
 };
 
-export const authBegin = () => ({
-  type: AUTH_BEGIN,
-  payload: { authorizing: true }
+export const loadBegin = () => ({
+  type: LOAD_BEGIN,
+  payload: { loading: true }
 });
 
-export const authSuccess = ( username, restApiToken ) => ({
-  type: AUTH_SUCCESS,
-  payload: {  username, restApiToken }
+export const loadSuccess = json => ({
+  type: LOAD_SUCCESS,
+  payload: { loading: false, wasOnceLoaded: true, messages: json }
 });
 
-export const authFailure = error => ({
-  type: AUTH_FAILURE,
-  payload: { error: error.message }
+export const loadFailure = error => ({
+  type: LOAD_FAILURE,
+  payload: { errorMessage: error.message, loading: false }
 });
-
-
-export function Deauthorize() {
-  return dispatch => {
-    dispatch(deathorizeBegin());
-    sleeping(3000).then(() => {
-        localStorage.removeItem('restApiToken');
-        localStorage.removeItem('user_id');
-        dispatch(deathorizeSuccess());
-        return true;
-    })
-    .catch(error => {dispatch(deathorizeFailure(error))});
-  };
-};
-
-export const deathorizeBegin = () => ({
-  type: DEAUTH_BEGIN,
-  payload: { deauthorizing: true }
-});
-
-export const deathorizeSuccess = () => ({
-  type: DEAUTH_SUCCESS,
-  payload: { deauthorizing: false }
-});
-
-export const deathorizeFailure = error => ({
-  type: DEAUTH_FAILURE,
-  payload: { error: error.message, deauthorizing: false }
-});
-

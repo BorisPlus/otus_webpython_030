@@ -1,17 +1,16 @@
 import {
-    AUTH_BEGIN,
-    AUTH_SUCCESS,
-    AUTH_FAILURE,
-    DEAUTH_BEGIN,
-    DEAUTH_SUCCESS,
-    DEAUTH_FAILURE,
-} from "../../constants/index";
+  AUTH_BEGIN,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  DEAUTH_BEGIN,
+  DEAUTH_SUCCESS,
+  DEAUTH_FAILURE,
+} from "../../constants/actions/index";
 
 const initialState = {
-  username: null,
-  errorMessage: null,
-  restApiToken: null,
   authorizing: false,
+  deauthorizing: false,
+  errorMessage: null,
 };
 
 export default function authReducer(state = initialState, action) {
@@ -20,48 +19,47 @@ export default function authReducer(state = initialState, action) {
     case AUTH_BEGIN:
       return {
         ...state,
-        authorizing: true,
-        error: null,
-        username: state.username
+        authorizing: action.payload.authorizing,
+        errorMessage: action.payload.errorMessage
       };
 
     case AUTH_SUCCESS:
-      console.log('username = ' + action);
-      console.log('username = ' + state);
       return {
         ...state,
-        authorizing: false,
-        restApiToken: action.payload.restApiToken,
-        username: action.payload.username
+        authorizing: action.payload.authorizing,
+        errorMessage: action.payload.errorMessage,
+        kick: action.payload.kick
       };
 
     case AUTH_FAILURE:
       return {
         ...state,
-        authorizing: false,
-        error: action.payload.error,
-        restApiToken: null
+        authorizing: action.payload.authorizing,
+        errorMessage: action.payload.errorMessage,
+        kick: action.payload.kick
       };
 
     case DEAUTH_BEGIN:
       return {
         ...state,
-        deauthorizing: true,
-        error: null
+        deauthorizing: action.payload.deauthorizing,
+        errorMessage: action.payload.errorMessage
       };
 
     case DEAUTH_SUCCESS:
       return {
         ...state,
-        deauthorizing: false,
-        restApiToken: null
+        deauthorizing: action.payload.deauthorizing,
+        restApiToken: action.payload.restApiToken,
+        kick: action.payload.kick
       };
 
     case DEAUTH_FAILURE:
       return {
         ...state,
-        deauthorizing: false,
-        error: action.payload.error
+        deauthorizing: action.payload.deauthorizing,
+        errorMessage: action.payload.error,
+        kick: action.payload.kick
       };
 
     default:

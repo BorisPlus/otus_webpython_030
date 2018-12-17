@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Authorize } from "../actions/index";
+import { Authorize } from "../../actions/index";
 
-//"authReducer":{"username":null,"errorMessage":null,"restApiToken":null,"authorizing"
 const mapStateToProps = state => ({
-    username: state.authReducer.username,
-    password: state.authReducer.password,
-    authorizing: state.authReducer.authorizing,
-    isValid: state.authReducer.isValid
+  username: state.authReducer.username,
+  password: state.authReducer.password,
+  authorizing: state.authReducer.authorizing
 });
 
 const mapDispatchToProps = dispatch => {
@@ -31,25 +29,27 @@ class ReactAuthForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  handleSubmit = (e, data) => {
-    e.preventDefault();
-    console.group('ReactAuthForm.handleSubmit()');
-    console.log('this.props = ' + JSON.stringify(this.props));
-    console.log('this.state = ' + JSON.stringify(this.state));
-    console.groupEnd();
-    const { username, password } = this.state;
-    this.props.Authorize(username, password);
-  }
-
   componentWillUpdate(nextProps, nextState) {
     nextState.isValid = (nextState.username && nextState.password) ? true : false;
   }
 
-  render() {
-    console.group('ReactAuthForm rendering...');
+  handleSubmit = (e, data) => {
+    console.group('ReactAuthForm.handleSubmit()');
     console.log('this.props = ' + JSON.stringify(this.props));
     console.log('this.state = ' + JSON.stringify(this.state));
     console.groupEnd();
+
+    e.preventDefault();
+    const { username, password } = this.state;
+    this.props.Authorize(username, password);
+  }
+
+  render() {
+    console.group('ReactAuthForm.render()');
+    console.log('this.props = ' + JSON.stringify(this.props));
+    console.log('this.state = ' + JSON.stringify(this.state));
+    console.groupEnd();
+
     const { username, password, isValid } = this.state;
     const { authorizing } = this.props;
     return (
@@ -73,7 +73,7 @@ class ReactAuthForm extends React.Component {
         />
         <input
           type="submit"
-          data-is_sending={ authorizing ?"yes":"no" }
+          data-is_requested={ authorizing ? "yes" : "no" }
           value={ authorizing ? "Authorizing..." : "Let's Authorize" }
           disabled={ !isValid || authorizing } />
       </form>

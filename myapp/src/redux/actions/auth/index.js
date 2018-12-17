@@ -1,42 +1,42 @@
 import {
-    AUTH_BEGIN,
-    AUTH_SUCCESS,
-    AUTH_FAILURE,
-    DEAUTH_BEGIN,
-    DEAUTH_SUCCESS,
-    DEAUTH_FAILURE,
-//    DEAUTHORIZE,
-    BACKEND_API_URL
-} from "../../constants/index";
-
+  AUTH_BEGIN,
+  AUTH_SUCCESS,
+  AUTH_FAILURE,
+  DEAUTH_BEGIN,
+  DEAUTH_SUCCESS,
+  DEAUTH_FAILURE,
+} from "../../constants/actions/index";
 import {
-    handleErrors,
-    sleeping
-} from "../_utils/index";
+  sleeping,
+  fetchRestJson,
+  defaultObjectedParams
+} from "../../api/api";
 
 
 export function Authorize(username, password) {
+  console.group('actions.auth.index.Authorize:');
+  console.log('username: ' + username);
+  console.log('password: *********');
+  console.groupEnd();
+
+  let params = defaultObjectedParams;
+  params.method = 'POST';
+  params.body = JSON.stringify({username: username, password: password});
+
   return dispatch => {
     dispatch(authBegin());
-    // для отладки искусственно увеличиваю время ответа
+    // для демонстрации искусственно увеличиваю время ответа
     sleeping(2000).then(() => {
-      fetch( '' + BACKEND_API_URL + '/token-auth/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username: username, password: password})
-      })
-      .then(handleErrors)
+      fetchRestJson('/token-auth/', params)
       .then(response => response.json())
       .then(json => {
         localStorage.setItem('restApiToken', json.token);
         localStorage.setItem('user_id', json.user_id);
+        localStorage.setItem('username', json.username);
         dispatch(authSuccess(username, json.token));
         return json.token;
       })
-      .catch(error => {dispatch(authFailure(error));
-      });
+      .catch(error => dispatch(authFailure(error)))
     });
   };
 };
@@ -46,25 +46,29 @@ export const authBegin = () => ({
   payload: { authorizing: true }
 });
 
-export const authSuccess = ( username, restApiToken ) => ({
+export const authSuccess = () => ({
   type: AUTH_SUCCESS,
-  payload: {  username, restApiToken }
+  payload: { authorizing: false, kick: new Date() }
 });
 
 export const authFailure = error => ({
   type: AUTH_FAILURE,
-  payload: { error: error.message }
+  payload: { errorMessage: error.message, authorizing: false, kick: new Date() }
 });
 
 
 export function Deauthorize() {
+  console.group('actions.auth.index.Deauthorize:');
+  console.groupEnd();
+
   return dispatch => {
     dispatch(deathorizeBegin());
-    sleeping(3000).then(() => {
-        localStorage.removeItem('restApiToken');
-        localStorage.removeItem('user_id');
-        dispatch(deathorizeSuccess());
-        return true;
+    sleeping(2000).then(() => {
+      localStorage.removeItem('restApiToken');
+      localStorage.removeItem('user_id');
+      localStorage.removeItem('username');
+      dispatch(deathorizeSuccess());
+      return true;
     })
     .catch(error => {dispatch(deathorizeFailure(error))});
   };
@@ -77,11 +81,11 @@ export const deathorizeBegin = () => ({
 
 export const deathorizeSuccess = () => ({
   type: DEAUTH_SUCCESS,
-  payload: { deauthorizing: false }
+  payload: { deauthorizing: false, kick: new Date() }
 });
 
 export const deathorizeFailure = error => ({
   type: DEAUTH_FAILURE,
-  payload: { error: error.message, deauthorizing: false }
+  payload: { errorMessage: error.message, deauthorizing: false, kick: new Date() }
 });
 

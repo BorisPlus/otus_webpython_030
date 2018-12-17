@@ -2,25 +2,27 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PageContent from './PageContent';
 
-
 const mapStateToProps = (state) => ({
-    state: state
+  authError: state.authReducer.error
 });
 
-class App extends React.Component {
+class ReactApp extends React.Component {
   render() {
-    console.group('App rendering...');
+
+    console.group('ReactApp.render()');
     console.log('this.props = ' + JSON.stringify(this.props));
     console.log('this.state = ' + JSON.stringify(this.state));
     console.log('this.props.state = ' + JSON.stringify(this.props.state));
-    const appError = this.props.state.authReducer.error ? this.props.state.authReducer.error : null;
-    if (appError) {
-        console.log('appError = ' + appError);
+//    const appError = this.props.state.authReducer.error ? this.props.state.authReducer.error : null;
+    const { authError } = this.props;
+    if (authError) {
+        console.log('authError = ' + authError);
     }
     console.groupEnd();
+
     return (
       <div className="App">
-        { appError ? <div className={`error center`}>{appError}</div> : '' }
+        { authError ? <div className={`error center`}>{authError}</div> : '' }
         <div className='center'>
           <PageContent/>
         </div>
@@ -29,4 +31,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(ReactApp);

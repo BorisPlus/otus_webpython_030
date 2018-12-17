@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Deauthorize } from "../actions/index";
+import { Deauthorize } from "../../../redux/actions/index";
 
-const mapStateToProps = () => {
-  return ( { } );
+const mapStateToProps = (state) => {
+  return ({
+    deauthorizing: state.authReducer.deauthorizing
+  });
 };
 
 const mapDispatchToProps = dispatch => {
@@ -14,25 +16,35 @@ const mapDispatchToProps = dispatch => {
 
 class ReactDeauthorizeForm extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      deauthorizing: false
+    };
+  }
+
   handleClick = (e) => {
     e.preventDefault();
     this.props.Deauthorize();
   }
 
   render() {
-    console.group('ReactDeauthorizeForm rendering...');
+
+    console.group('ReactDeauthorizeForm.render()');
     console.log('this.props = ' + JSON.stringify(this.props));
     console.log('this.state = ' + JSON.stringify(this.state));
     console.groupEnd();
+
     const { deauthorizing } = this.props;
     return (
       <>
         <input
-            onClick={this.handleClick}
-            type='submit' href="#"
-            className="attention"
-            disabled={ deauthorizing }
-            value={'Exit account ('+ localStorage.getItem('username') +')'} />
+          onClick={this.handleClick}
+          type='submit'
+          data-is_requested={ deauthorizing ? "yes" : "no" }
+          className="attention"
+          disabled={ deauthorizing }
+          value={ 'Exit account ('+ localStorage.getItem('username') +')' } />
       </>
     );
   }

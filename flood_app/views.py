@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.views import APIView
 from rest_framework import status
-from django.http import Http404
 from django.contrib.auth.models import User
 from . import serializers
 from . import models
@@ -19,17 +18,19 @@ class MessageList(generics.ListAPIView):
 @authentication_classes([])
 @permission_classes([])
 class MessageCreate(APIView):
-    allowed_methods = {'POST'}
+    # allowed_methods = {'POST'}
 
     def post(self, request):
         # if not request.user.is_authenticated:
         #     return Response({"error": "User is not authenticated"},
         #                     status=status.HTTP_511_NETWORK_AUTHENTICATION_REQUIRED)
         try:
+            # from django.http import Http404
             # owner = get_object_or_404(User, pk=user_id)
-            owner = User.objects.get(pk=request.data.get('owner', 0))
+            owner = User.objects.get(pk=request.data.get('owner_id', 0))
         except User.DoesNotExist:
-            return Response({"error": "Owner does not exists."}, status=status.HTTP_404_NOT_FOUND)
+            # TODO: как в React получить данные из переданного в 'data'
+            return Response(data={"error": "Owner does not exists."}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = serializers.MessageSerializer(data=request.data)
         if serializer.is_valid():
