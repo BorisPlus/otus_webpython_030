@@ -25,7 +25,7 @@ export function Send(text) {
   return dispatch => {
     dispatch(sendBegin());
     // для демонстрации искусственно увеличиваю время ответа
-    sleeping(2000).then(() => {
+    sleeping(1000).then(() => {
       fetchRestJson('/api/ver.0/message/create', params)
       .then(() => dispatch(sendSuccess()))
       .catch(error => dispatch(sendFailure(error)))
@@ -57,7 +57,7 @@ export function Load() {
   return dispatch => {
     dispatch(loadBegin());
     // для демонстрации искусственно увеличиваю время ответа
-    sleeping(2000).then(() => {
+    sleeping(3000).then(() => {
       fetchRestJson( '/api/ver.0/message/list')
       .then(response => response.json())
       .then(json => {

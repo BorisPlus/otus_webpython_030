@@ -30,7 +30,7 @@ class ReactMessageList extends React.Component {
 
   componentDidMount() {
     this.loadMessages();
-    setInterval(this.loadMessages, 10000);
+    setInterval(this.loadMessages, 20000);
     // I don't like THIS approach
     // On demand needed, like kicked
     // So I add at form send link to [re]Load

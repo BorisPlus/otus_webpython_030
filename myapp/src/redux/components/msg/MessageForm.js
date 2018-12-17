@@ -44,6 +44,7 @@ class ReactMessageForm extends Component {
     e.preventDefault();
     const { text } = this.state;
     this.props.Send(text);
+    // setTimeout(() => {}, 2000);
     this.props.Load();
   }
 
