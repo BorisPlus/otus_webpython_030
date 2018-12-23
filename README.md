@@ -16,14 +16,18 @@ After refactor and user-friendly:
 
 
 Run **backend** at first terminal window:
-```
+```bash
 python3 manage.py runserver
 ```
 
 Run **frontend** at second terminal window:
 
-```
+```bash
 cd myapp/ && npm i && npm start
+```
+
+```bash
+cd myapp/ && npm start
 ```
 
 Worked urls:
@@ -57,7 +61,11 @@ Worked urls:
  * npm install --save-dev @babel/preset-env
  * npm install --save-dev @babel/preset-react
 
+### Router
 
+* https://habr.com/post/329996/
+    * cd myapp/
+    * npm install --save react-router-dom
 ## Author
 
 * https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
