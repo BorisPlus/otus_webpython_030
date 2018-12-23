@@ -2,13 +2,7 @@ from core_app.serializers import UserSerializer
 from rest_framework_jwt.settings import api_settings
 
 
-# def my_jwt_response_handler(token, user=None, request=None):
-#     return {
-#         'token': token,
-#         'user': UserSerializer(user, context={'request': request}).data
-#     }
-
-def my_jwt_response_handler(token, user=None, request=None):
+def jwt_response_handler(token, user=None, request=None):
     user = UserSerializer(user, context={'request': request}).data
 
     jwt_decode_handler = api_settings.JWT_DECODE_HANDLER

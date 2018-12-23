@@ -95,3 +95,34 @@ input[type=submit].attention:hover {
     background:#C0FFC0;
     border: 1px solid #000;
 }
+
+/* content */
+.content {
+    min-height: calc(100vh - 187px);
+    font-size: 24px;
+    margin: 0;
+    padding: 14px;
+    color: #000;
+    display: inline-block;
+}
+.content .content_link {
+    font-weight: bold;
+    color: #04183A;
+    text-decoration: none;
+}
+.content .content_link:hover {
+    color: #FD0018;
+    transition: all 300ms ease;
+}
+.content .main_content {
+    width: 70%;
+    display: table-cell;
+    padding: 0 50px ;
+}
+.content .additional_content{
+    font-size: 16px;
+    width: 20%;
+    padding: 0 50px ;
+    display: table-cell;
+    border-left: 1px solid #582400;
+}

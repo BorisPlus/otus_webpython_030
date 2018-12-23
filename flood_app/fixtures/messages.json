@@ -1,29 +1,20 @@
 [
     {
-        "model": "app_chat.message",
+        "model": "app_chat.chat",
         "pk": 1,
         "fields": {
-            "name": "Alice",
-            "message": "Bob? It's me. Alice.",
+            "owner_id": 1,
+            "name": "First.",
             "created_at": "2018-11-30 00:00:00+0100"
         }
     },
     {
-        "model": "app_chat.message",
+        "model": "app_chat.chat",
         "pk": 2,
         "fields": {
-            "name": "Bob",
-            "message": "Alice, good night. It's me. Bob.",
-            "created_at": "2018-11-30 00:00:05+0100"
-        }
-    },
-    {
-        "model": "app_chat.message",
-        "pk": 3,
-        "fields": {
-            "name": "Charley",
-            "message": "Alice, Don't trust him!. I am a Bob!",
-            "created_at": "2018-11-30 00:00:10+0100"
+            "owner_id": 2,
+            "message": "Second.",
+            "created_at": "2018-12-01 00:00:05+0100"
         }
     }
 ]

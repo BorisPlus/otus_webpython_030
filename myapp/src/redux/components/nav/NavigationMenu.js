@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import AuthorizeForm from '../auth/AuthorizeForm';
 import DeauthorizeForm from '../auth/DeauthorizeForm';
-import MessageForm from "../msg/MessageForm";
+import ChatForm from "../cht/ChatForm";
 
 const mapStateToProps = (state) => ({
     kickMe: state.authReducer.kick
@@ -30,7 +30,7 @@ class ReactNavigationMenu extends React.Component {
         (
           <>
             <DeauthorizeForm />
-            <MessageForm />
+            <ChatForm />
           </>
         ) :
         < AuthorizeForm /> }

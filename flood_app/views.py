@@ -17,6 +17,13 @@ class MessageList(generics.ListAPIView):
 
 @authentication_classes([])
 @permission_classes([])
+class ChatList(generics.ListAPIView):
+    queryset = models.Chat.objects.order_by('-created_at').all()
+    serializer_class = serializers.ChatSerializer
+
+
+@authentication_classes([])
+@permission_classes([])
 class MessageCreate(APIView):
     # allowed_methods = {'POST'}
 
@@ -25,8 +32,6 @@ class MessageCreate(APIView):
         #     return Response({"error": "User is not authenticated"},
         #                     status=status.HTTP_511_NETWORK_AUTHENTICATION_REQUIRED)
         try:
-            # from django.http import Http404
-            # owner = get_object_or_404(User, pk=user_id)
             owner = User.objects.get(pk=request.data.get('owner_id', 0))
         except User.DoesNotExist:
             # TODO: как в React получить данные из переданного в 'data'
@@ -39,5 +44,25 @@ class MessageCreate(APIView):
             if not measurement:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
                 # raise Exception('Exception of MessageSerializer.save()')
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_409_CONFLICT)
+
+
+@authentication_classes([])
+@permission_classes([])
+class ChatCreate(APIView):
+    def post(self, request):
+        try:
+            owner = User.objects.get(pk=request.data.get('owner_id', 0))
+        except User.DoesNotExist:
+            # TODO: как в React получить данные из переданного в 'data'
+            return Response(data={"error": "Owner does not exists."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.ChatSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.validated_data["owner_id"] = owner.pk
+            measurement = serializer.save()
+            if not measurement:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_409_CONFLICT)
