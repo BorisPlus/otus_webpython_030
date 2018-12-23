@@ -1,6 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PageContent from './PageContent';
+import appDescription from '../constants/gui/variables';
+//import PageContent from './PageContent';
+import Header from './mainTemplate/Header';
+import Content from './mainTemplate/frames/Chats';
+import Navigation from './mainTemplate/Navigation';
+import Footer from './mainTemplate/Footer';
 
 const mapStateToProps = (state) => ({
   authError: state.authReducer.error
@@ -22,9 +27,11 @@ class ReactApp extends React.Component {
 
     return (
       <div className="App">
-        { authError ? <div className={`error center`}>{authError}</div> : '' }
-        <div className='center'>
-          <PageContent/>
+        <div className="root">
+          <Header project={appDescription.project} />
+          <Navigation />
+          <Content />
+          <Footer project={appDescription.project} />
         </div>
       </div>
     );
@@ -32,3 +39,8 @@ class ReactApp extends React.Component {
 }
 
 export default connect(mapStateToProps)(ReactApp);
+
+//        { authError ? <div className={`error center`}>{authError}</div> : '' }
+//        <div className='center'>
+//          <PageContent/>
+//        </div>

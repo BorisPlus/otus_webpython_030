@@ -61,18 +61,23 @@ class ReactChatForm extends Component {
       <div className="newline">
       <div className="form">
         { errorMessage  ? <div className="error"> <b>Error:</b> {errorMessage} </div> : null }
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="max_width">
+
+          <div className="newline">
           <input
             className="input"
             type="text"
             name="name"
-            placeholder="Enter name..."
+            placeholder="Enter new chat name..."
             onChange={this.handleChange}
             value={name || ''}
             disabled={ creating }
             required
             autoFocus
           />
+          </div>
+
+          <div className="newline">
           <input
             disabled={ !isValid || creating }
             data-is_requested={ creating ? "yes" : "no" }
@@ -81,6 +86,8 @@ class ReactChatForm extends Component {
             name="submit"
             value={ creating ? "Creating..." : "Create" }
           />
+          </div>
+
         </form>
       </div>
       </div>

@@ -60,6 +60,7 @@ class ReactChatList extends React.Component {
       <>
         {loading && wasOnceLoaded ? <div className="notice">Reloading...</div> : null}
         <div className="chats">
+          Chat list:
           {chats_obj}
         </div>
       </>

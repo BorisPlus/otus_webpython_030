@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import NavigationMenu from './nav/NavigationMenu';
 //import MessageList from "./msg/MessageList";
 import ChatList from "./cht/ChatList";
-import Content from "./Content";
 
 const mapStateToProps = (state) => ({
     kickMe: state.authReducer.kick,
@@ -36,7 +35,7 @@ class ReactPageContent extends React.Component {
           <NavigationMenu/>
         </div>
         <div className='center'>
-          <Content />
+          <ChatList />
         </div>
       </div>
     );
