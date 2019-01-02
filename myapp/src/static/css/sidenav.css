@@ -40,36 +40,46 @@
 .sideNavSpanSticky:hover {
   color: #f1f1f1;
 }
-/* */
-/* The navigation menu links */
-.sideNav a  {
+
+.sideNav .sideNavItem  {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
   display: block;
   transition: 0.3s;
-}
-.sideNav a.currentChat {
-  text-decoration: underline;
-  font-weight: bold;
+  cursor: pointer;
 }
 
-.sideNav div.a  {
+.sideNav .sideNavItemDisabled  {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 15px;
-  color: #818181;
+  font-size: 25px;
+  color: #333;
   display: block;
   transition: 0.3s;
 }
-/* When you mouse over the navigation links, change their color */
-.sideNav a:hover {
+
+
+.sideNav .sideNavItem:hover {
   color: #f1f1f1;
 }
 
-/* Position and style the close button (top right corner)
-  position: absolute;*/
+.sideNav .currentChat {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+.sideNav .notice  {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  font-style: oblique;
+}
+
 .sideNav .closeBtn {
   float: right;
   background-color: #009900; /* Green */
