@@ -7,7 +7,7 @@ import { LoadChats, CloseSideBar } from "../../../actions/index";
 
 import {
   CONSOLE_LOG_COMPONENTS,
-} from "../../../constants/settings/index";
+} from "../../../../../src/settings";
 
 const mapStateToProps = (state) => ({
   wasOnceLoaded: state.chtReducer.wasOnceLoaded,

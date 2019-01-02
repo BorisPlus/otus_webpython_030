@@ -4,13 +4,11 @@ import key from "weak-key";
 import ChatMessage from "./ChatMessage";
 import ReactChatMessageForm from "./ChatMessageForm";
 import { LoadChatMessages } from "../../actions/index";
-import {
-  CONSOLE_LOG_COMPONENTS,
-} from "../../constants/settings/index";
 
 import {
-    SEC_AUTO_UPDATE,
-} from "../../constants/settings/index";
+  CONSOLE_LOG_COMPONENTS,
+  SEC_AUTO_UPDATE,
+} from "../../../../src/settings";
 
 const mapStateToProps = (state) => ({
   wasChatMessagesOnceLoaded: state.msgReducer.wasChatMessagesOnceLoaded || false,

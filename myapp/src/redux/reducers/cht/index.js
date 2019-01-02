@@ -11,7 +11,7 @@ import {
 
 import {
   CONSOLE_LOG_REDUCERS,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 const initialState = {
   name: undefined,

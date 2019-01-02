@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import {
   CONSOLE_LOG_COMPONENTS,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 import { CreateChatMessage } from "../../actions/index";
 

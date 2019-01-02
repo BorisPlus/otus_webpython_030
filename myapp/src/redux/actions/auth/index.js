@@ -15,7 +15,7 @@ import {
 
 import {
     SEC_FORCE_TIMEOUT,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 export function Authorize(username, password) {
   console.group('actions.auth.index.Authorize:');

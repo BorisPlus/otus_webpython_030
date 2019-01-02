@@ -1,6 +1,6 @@
 import {
     BACKEND_API_URL
-} from "../constants/config/index";
+} from "../../../src/config";
 
 // Handle HTTP errors since fetch won't.
 export function handleErrors(response) {

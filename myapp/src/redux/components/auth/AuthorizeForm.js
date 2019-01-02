@@ -4,7 +4,7 @@ import { Authorize } from "../../actions/index";
 
 import {
   CONSOLE_LOG_COMPONENTS,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 const mapStateToProps = state => ({
   username: state.authReducer.username,

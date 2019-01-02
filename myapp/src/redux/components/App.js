@@ -9,7 +9,7 @@ import { LoadChats, OpenSideBar, CloseSideBar } from "../actions/index";
 
 import {
   CONSOLE_LOG_COMPONENTS,
-} from "../constants/settings/index";
+} from "../../../src/settings";
 
 const mapStateToProps = (state) => ({
   styleWidth: state.sidebarReducer.styleWidth,

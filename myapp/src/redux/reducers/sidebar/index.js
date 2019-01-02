@@ -3,10 +3,9 @@ import {
   CLOSE_SIDEBAR
 } from "../../constants/actions/index";
 
-
 import {
   CONSOLE_LOG_REDUCERS,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 const initialState = {
   styleWidth: "0"

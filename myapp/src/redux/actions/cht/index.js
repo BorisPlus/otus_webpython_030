@@ -16,7 +16,7 @@ import {
 
 import {
     SEC_FORCE_TIMEOUT,
-} from "../../constants/settings/index";
+} from "../../../../src/settings";
 
 export function CreateChat(name) {
   console.group('actions.cht.index.CreateChat:');
