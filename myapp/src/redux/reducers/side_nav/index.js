@@ -1,6 +1,6 @@
 import {
-  OPEN_SIDEBAR,
-  CLOSE_SIDEBAR
+  OPEN_SIDE_NAV,
+  CLOSE_SIDE_NAV
 } from "../../constants/actions/index";
 
 import {
@@ -11,20 +11,20 @@ const initialState = {
   styleWidth: "0"
 };
 
-export const myNameIs = 'SidebarReducer';
+export const myNameIs = 'SideNavReducer';
 
 export function reducer(state = initialState, action) {
 
   let newState = {};
   switch (action.type) {
-    case OPEN_SIDEBAR:
+    case OPEN_SIDE_NAV:
       newState = {
         ...state,
         styleWidth: "100%"
       };
       break;
 
-    case CLOSE_SIDEBAR:
+    case CLOSE_SIDE_NAV:
       newState = {
         ...state,
         styleWidth: "0"

@@ -42,24 +42,25 @@
 }
 
 .sideNav .sideNavItem  {
-  padding: 8px 8px 8px 32px;
+  padding: 4px 8px 4px 32px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;
   display: block;
   transition: 0.3s;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sideNav .sideNavItemDisabled  {
-  padding: 8px 8px 8px 32px;
+  padding: 4px 8px 4px 32px;
   text-decoration: none;
   font-size: 25px;
   color: #333;
   display: block;
   transition: 0.3s;
 }
-
 
 .sideNav .sideNavItem:hover {
   color: #f1f1f1;
@@ -71,7 +72,7 @@
 }
 
 .sideNav .notice  {
-  padding: 8px 8px 8px 32px;
+  padding: 4px 0px 4px 32px;
   text-decoration: none;
   font-size: 25px;
   color: #818181;

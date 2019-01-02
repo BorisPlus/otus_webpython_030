@@ -1,30 +1,30 @@
 import {
-  OPEN_SIDEBAR,
-  CLOSE_SIDEBAR,
+  OPEN_SIDE_NAV,
+  CLOSE_SIDE_NAV,
 } from "../../constants/actions/index";
 
-export function CloseSideBar() {
+export function CloseSideNav() {
 //  console.group('actions.sidebar.index.CloseSideBar:');
 //  console.groupEnd();
   return dispatch => {
-    dispatch(CloseSideBarBegin());
+    dispatch(CloseSideNavBegin());
   };
 };
 
-export const CloseSideBarBegin = () => ({
-  type: CLOSE_SIDEBAR,
+export const CloseSideNavBegin = () => ({
+  type: CLOSE_SIDE_NAV,
   payload: { styleWidth: "0" }
 });
 
-export function OpenSideBar() {
+export function OpenSideNav() {
 //  console.group('actions.sidebar.index.OpenSideBar:');
 //  console.groupEnd();
   return dispatch => {
-    dispatch(OpenSideBarBegin());
+    dispatch(OpenSideNavBegin());
   };
 };
 
-export const OpenSideBarBegin = () => ({
-  type: OPEN_SIDEBAR,
+export const OpenSideNavBegin = () => ({
+  type: OPEN_SIDE_NAV,
   payload: { styleWidth: "100%" }
 });

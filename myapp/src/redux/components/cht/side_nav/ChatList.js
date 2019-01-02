@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import key from "weak-key";
 import Chat from "./Chat";
 import DeAuthorizeLink from "../../auth/DeAuthorizeLink";
-import { LoadChats, CloseSideBar } from "../../../actions/index";
+import { LoadChats, CloseSideNav } from "../../../actions/index";
 
 import {
   CONSOLE_LOG_COMPONENTS,
@@ -14,14 +14,14 @@ const mapStateToProps = (state) => ({
   loading: state.chtReducer.loading,
   chats: state.chtReducer.chats,
   errorMessage: state.chtReducer.errorMessage,
-  styleWidth: state.sidebarReducer.styleWidth,
+  styleWidth: state.sideNavReducer.styleWidth,
   isAuthorize: state.authReducer.isAuthorize,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     LoadChats: () => dispatch(LoadChats()),
-    CloseSideBar: () => dispatch(CloseSideBar()),
+    CloseSideNav: () => dispatch(CloseSideNav()),
   };
 };
 
@@ -36,8 +36,8 @@ class ReactChatList extends React.Component {
     this.props.LoadChats()
   };
 
-  closeSideBar = () => {
-    this.props.CloseSideBar()
+  closeSideNav = () => {
+    this.props.CloseSideNav()
   };
 
   componentDidMount() {
@@ -69,11 +69,18 @@ class ReactChatList extends React.Component {
     return (
       <>
         <div id="mySideNav" className="sideNav" style={divStyle}>
-          <div className="sideNavSpan"><span className="closeBtn" onClick={this.closeSideBar}>&raquo;</span></div>
-          {loading && !wasOnceLoaded ? <div className="a"><i>Loading chat list...</i></div> : null}
+          <div className="sideNavSpan"><span className="closeBtn" onClick={this.closeSideNav}>&raquo;</span></div>
           {chats_obj}
-          {loading && wasOnceLoaded ? <div className="a"><i>Reloading chat list...</i></div> : <div className="a">&nbsp;</div>}
-          <a href='./#'>HOME</a>
+          {
+            loading && wasOnceLoaded ?
+              <span className="notice">Reloading chat list...</span> :
+              loading && !wasOnceLoaded ?
+                <span className="notice">Loading chat list...</span> :
+                null
+          }
+          <img alt='delimiter' width='15' className="sideNavItem" src="favicon.818181.ico" />
+          <span className="sideNavItem">HOME</span>
+          <span className="sideNavItemDisabled">DISABLED</span>
           {isAuthorize ? <DeAuthorizeLink /> : null}
         </div>
       </>

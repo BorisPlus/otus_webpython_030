@@ -41,13 +41,13 @@ class ReactDeAuthorizeLink extends React.Component {
       <>
         {
           deAuthorizing ?
-          <div className="a" data-is_requested={ deAuthorizing ? "yes" : "no" }>
-            { 'EXIT ('+ username +')' }
-          </div> :
-          <a href='./'
+          <span className="sideNavItemDisabled" data-is_requested={ deAuthorizing ? "yes" : "no" }>
+            { 'EXITing ('+ username +')' }
+          </span> :
+          <span className="sideNavItem"
             onClick={this.handleClick}
             data-is_requested={ deAuthorizing ? "yes" : "no" }
-            disabled={ deAuthorizing }> { 'EXIT ('+ username +')' } </a>
+            disabled={ deAuthorizing }> { 'EXIT ('+ username +')' } </span>
         }
       </>
     );

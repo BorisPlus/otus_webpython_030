@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {
     SetCurrentChatId,
-    CloseSideBar,
+    CloseSideNav,
 } from "../../../actions/index";
 
 const mapStateToProps = (state) => ({
@@ -11,30 +11,30 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    CloseSideBar: () => dispatch(CloseSideBar()),
+    CloseSideNav: () => dispatch(CloseSideNav()),
     SetCurrentChatId: (chatId) => dispatch(SetCurrentChatId(chatId)),
   };
 };
 
 class ReactChat extends React.Component {
 
-  closeSideBar = () => {
-    this.props.CloseSideBar()
+  closeSideNav = () => {
+    this.props.CloseSideNav()
   };
 
 
   setCurrentChatId = (chatId) => {
     this.props.SetCurrentChatId(chatId);
-    this.closeSideBar();
+    this.closeSideNav();
   };
 
   render() {
     const { id, name, currentChatId } = this.props;
-    const isCurrentChat = (currentChatId === id) ? 'currentChat' : null;
+    const isCurrentChat = (currentChatId === id) ? 'sideNavItem currentChat' : "sideNavItem";
     return (
-      <a href='./#' onClick={() => this.setCurrentChatId(id)} className={ isCurrentChat }>
+      <span onClick={() => this.setCurrentChatId(id)} className={ isCurrentChat }>
         { name }
-      </a>
+      </span>
     );
   }
 };

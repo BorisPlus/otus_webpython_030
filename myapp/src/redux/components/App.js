@@ -3,16 +3,16 @@ import {connect} from 'react-redux';
 //import appDescription from '../constants/gui/variables';
 //import PageContent from './PageContent';
 import AuthorizeForm from './auth/AuthorizeForm';
-import ChatList from './cht/sitebar/ChatList';
+import ChatList from './cht/side_nav/ChatList';
 import ChatMessageList from './msg/ChatMessageList';
-import { LoadChats, OpenSideBar, CloseSideBar } from "../actions/index";
+import { LoadChats, OpenSideNav, CloseSideNav } from "../actions/index";
 
 import {
   CONSOLE_LOG_COMPONENTS,
 } from "../../../src/settings";
 
 const mapStateToProps = (state) => ({
-  styleWidth: state.sidebarReducer.styleWidth,
+  styleWidth: state.sideNavReducer.styleWidth,
   authError: state.authReducer.error,
   isAuthorize: state.authReducer.isAuthorize,
 
@@ -22,8 +22,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => {
   return {
     LoadChats: () => dispatch(LoadChats()),
-    OpenSideBar: () => dispatch(OpenSideBar()),
-    CloseSideBar: () => dispatch(CloseSideBar()),
+    OpenSideNav: () => dispatch(OpenSideNav()),
+    CloseSideNav: () => dispatch(CloseSideNav()),
   };
 };
 
@@ -34,13 +34,13 @@ class ReactApp extends React.Component {
     this.state = {}
   }
 
-  openSideBar = () => {
+  openSideNav = () => {
     this.props.LoadChats();
-    this.props.OpenSideBar();
+    this.props.OpenSideNav();
   };
 
-  closeSideBar = () => {
-    this.props.CloseSideBar()
+  closeSideNav = () => {
+    this.props.CloseSideNav()
   };
 
   render() {
@@ -65,7 +65,7 @@ class ReactApp extends React.Component {
         <div className="root">
           <ChatList />
           <div className="sideNavSpan">
-            <span className="sideNavSpanSticky" onClick={this.openSideBar}>&laquo;</span>
+            <span className="sideNavSpanSticky" onClick={this.openSideNav}>&laquo;</span>
           </div>
           <div id="main">
             <ChatMessageList />
