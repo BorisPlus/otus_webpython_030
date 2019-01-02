@@ -14,6 +14,13 @@ class MessageList(generics.ListAPIView):
     queryset = models.Message.objects.order_by('-created_at').all()
     serializer_class = serializers.MessageSerializer
 
+    # def get_queryset(self):
+    #     chat_id = self.kwargs['chat_id']
+    #     return models.Message.objects.filter(purchaser__username=chat_id)
+
+    def get_queryset(self):
+        return models.Message.objects.all()
+
 
 @authentication_classes([])
 @permission_classes([])
@@ -61,6 +68,46 @@ class ChatCreate(APIView):
         serializer = serializers.ChatSerializer(data=request.data)
         if serializer.is_valid():
             serializer.validated_data["owner_id"] = owner.pk
+            measurement = serializer.save()
+            if not measurement:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_409_CONFLICT)
+
+
+@authentication_classes([])
+@permission_classes([])
+class ChatMessageList(generics.ListAPIView):
+    # queryset = models.ChatMessage.objects.order_by('-created_at').all()
+    serializer_class = serializers.ChatMessageSerializer
+
+    def get_queryset(self):
+        chat_id = self.kwargs['chat_id']
+        return models.ChatMessage.objects.filter(chat_id=chat_id).order_by('-created_at')
+
+
+@authentication_classes([])
+@permission_classes([])
+class ChatMessageCreate(APIView):
+    def post(self, request, **kwargs):
+        try:
+            owner = User.objects.get(pk=request.data.get('owner_id', 0))
+        except User.DoesNotExist:
+            # TODO: как в React получить данные из переданного в 'data'
+            return Response(data={"error": "Owner does not exists."}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            chat = models.Chat.objects.get(pk=kwargs.get('chat_id', 0))
+        except models.Chat.DoesNotExist:
+            # TODO: как в React получить данные из переданного в 'data'
+            return Response(data={"error": "Chat does not exists."}, status=status.HTTP_404_NOT_FOUND)
+
+        tmp_data = request.data.copy()
+        tmp_data['chat_id'] = chat.pk
+        serializer = serializers.ChatMessageSerializer(data=tmp_data)
+        if serializer.is_valid():
+            serializer.validated_data["owner_id"] = owner.pk
+            serializer.validated_data["chat_id"] = chat.pk
             measurement = serializer.save()
             if not measurement:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

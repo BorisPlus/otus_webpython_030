@@ -2,6 +2,10 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Authorize } from "../../actions/index";
 
+import {
+  CONSOLE_LOG_COMPONENTS,
+} from "../../constants/settings/index";
+
 const mapStateToProps = state => ({
   username: state.authReducer.username,
   password: state.authReducer.password,
@@ -45,10 +49,13 @@ class ReactAuthForm extends React.Component {
   }
 
   render() {
-    console.group('ReactAuthForm.render()');
-    console.log('this.props = ' + JSON.stringify(this.props));
-    console.log('this.state = ' + JSON.stringify(this.state));
-    console.groupEnd();
+
+    if (CONSOLE_LOG_COMPONENTS.includes(this.constructor.name)) {
+        console.group('COMPONENT# ' + this.constructor.name + '.render()');
+        console.log('this.props = ' + JSON.stringify(this.props));
+        console.log('this.state = ' + JSON.stringify(this.state));
+        console.groupEnd();
+    }
 
     const { username, password, isValid } = this.state;
     const { authorizing } = this.props;

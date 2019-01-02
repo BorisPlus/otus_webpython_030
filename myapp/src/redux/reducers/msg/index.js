@@ -1,35 +1,46 @@
 import {
-  SEND_BEGIN,
-  SEND_SUCCESS,
-  SEND_FAILURE,
-  LOAD_BEGIN,
-  LOAD_SUCCESS,
-  LOAD_FAILURE,
+  CREATE_CHAT_MESSAGE_BEGIN,
+  CREATE_CHAT_MESSAGE_SUCCESS,
+  CREATE_CHAT_MESSAGE_FAILURE,
+//  LOAD_BEGIN,
+//  LOAD_SUCCESS,
+//  LOAD_FAILURE,
+  LOAD_CHAT_MESSAGES_BEGIN,
+  LOAD_CHAT_MESSAGES_SUCCESS,
+  LOAD_CHAT_MESSAGES_FAILURE,
+  SET_CURRENT_CHAT_ID
 } from "../../constants/actions/index";
+
+import {
+  CONSOLE_LOG_REDUCERS,
+} from "../../constants/settings/index";
 
 const initialState = {
   text: undefined,
   errorMessage: null,
-  sending: false,
+  creatingChatMessage: false,
+
+  currentChatId: null,
+  loadingChatMessages: false,
+  hideChatMessages: false,
+  chatMessages: []
 };
 
-export default function msgReducer(state = initialState, action) {
+export const myNameIs = 'MessageReducer';
 
-  console.group('MsgReducer');
-  console.log('action.type: ' + action.type);
-  console.log('action: ' + JSON.stringify(action));
-  console.log('state: ' + JSON.stringify(state));
-  console.groupEnd();
+export function reducer(state = initialState, action) {
 
+  let newState = {};
   switch (action.type) {
-    case SEND_BEGIN:
-      return {
+    case CREATE_CHAT_MESSAGE_BEGIN:
+      newState = {
         ...state,
-        sending: action.payload.sending,
+        creatingChatMessage: action.payload.creatingChatMessage,
         errorMessage: action.payload.errorMessage
       };
+      break;
 
-    case SEND_SUCCESS:
+    case CREATE_CHAT_MESSAGE_SUCCESS:
       // TODO: интересно
       //        text: action.payload.text,
       //        text: '',
@@ -40,48 +51,88 @@ export default function msgReducer(state = initialState, action) {
       // Input elements should not switch from uncontrolled to controlled (or vice versa).
       // Decide between using a controlled or uncontrolled input element for the lifetime of the component.
       // More info: https://fb.me/react-controlled-components
-      return {
+      newState = {
         ...state,
-        sending: action.payload.sending,
+        creatingChatMessage: action.payload.creatingChatMessage,
         errorMessage: action.payload.errorMessage,
         text: action.payload.text,
         kick: action.payload.kick
       };
+      break;
 
-    case SEND_FAILURE:
-      return {
+    case CREATE_CHAT_MESSAGE_FAILURE:
+      newState = {
         ...state,
-        sending: action.payload.sending,
+        creatingChatMessage: action.payload.creatingChatMessage,
         errorMessage: action.payload.errorMessage,
         text: action.payload.text,
         kick: action.payload.kick
       };
+      break;
 
-    case LOAD_BEGIN:
-      return {
+    case LOAD_CHAT_MESSAGES_BEGIN:
+      newState = {
         ...state,
-        loading: action.payload.loading,
+        loadingChatMessages: action.payload.loadingChatMessages,
         errorMessage: action.payload.errorMessage
       };
+      if (typeof action.payload.hideChatMessages !== 'undefined') {
+        newState = {
+          ...newState,
+          hideChatMessages: action.payload.hideChatMessages
+        };
+      }
+      break;
 
-    case LOAD_SUCCESS:
-      return {
+    case LOAD_CHAT_MESSAGES_SUCCESS:
+      newState = {
         ...state,
-        loading: action.payload.loading,
-        wasOnceLoaded: action.payload.wasOnceLoaded,
+        loadingChatMessages: action.payload.loadingChatMessages,
+        wasChatMessagesOnceLoaded: action.payload.wasChatMessagesOnceLoaded,
         errorMessage: action.payload.errorMessage,
-        messages: action.payload.messages,
-        // kick: action.payload.kick
+        chatMessages: action.payload.chatMessages,
       };
+      if (typeof action.payload.hideChatMessages !== 'undefined') {
+        newState = {
+          ...newState,
+          hideChatMessages: action.payload.hideChatMessages
+        };
+      }
+      break;
 
-    case LOAD_FAILURE:
-      return {
+    case LOAD_CHAT_MESSAGES_FAILURE:
+      newState = {
         ...state,
-        loading: action.payload.sending,
+        loadingChatMessages: action.payload.loadingChatMessages,
         errorMessage: action.payload.errorMessage,
       };
+      break;
+
+    case SET_CURRENT_CHAT_ID:
+      newState = {
+        ...state,
+        loadingChatMessages: action.payload.loadingChatMessages,
+        errorMessage: action.payload.errorMessage,
+        currentChatId: action.payload.currentChatId,
+        chatMessages: [],
+        hideChatMessages: true,
+        kick: new Date()
+      };
+      break;
 
     default:
-      return state;
+      newState = state;
+      break;
   }
+
+  if (CONSOLE_LOG_REDUCERS.includes(myNameIs)) {
+      console.group('REDUCER# ' + myNameIs);
+      console.log('action.type: ' + action.type);
+      console.log('action: ' + JSON.stringify(action));
+      console.log('state: ' + JSON.stringify(state));
+      console.log('newState: ' + JSON.stringify(newState));
+      console.groupEnd();
+  }
+
+  return newState;
 };

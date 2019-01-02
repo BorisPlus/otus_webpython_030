@@ -26,25 +26,29 @@ class ChatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Chat
-        fields = ('owner', 'name', 'created_at')
-        read_only_fields = ('owner', 'created_at',)
+        fields = ('id', 'owner', 'name', 'created_at')
+        read_only_fields = ('id', 'owner', 'created_at',)
 
     def to_representation(self, instance):
         self.fields['user'] = UserSerializerWithToken(read_only=True)
         return super(ChatSerializer, self).to_representation(instance)
 
 
-class MessageChatSerializer(serializers.ModelSerializer):
+class ChatMessageSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField(
+        read_only=True
+    )
+    chat = serializers.StringRelatedField(
         read_only=True
     )
 
     class Meta:
-        model = models.Message
-        fields = ('owner', 'text', 'created_at')  # '__all__'
-        read_only_fields = ('owner', 'created_at',)
+        model = models.ChatMessage
+        fields = ('text', 'created_at', 'owner', 'chat',)  # '__all__'
+        read_only_fields = ('chat', 'owner', 'created_at',)
 
     def to_representation(self, instance):
         self.fields['user'] = UserSerializerWithToken(read_only=True)
-        return super(MessageSerializer, self).to_representation(instance)
+        self.fields['chat'] = ChatSerializer(read_only=True)
+        return super(ChatMessageSerializer, self).to_representation(instance)
 

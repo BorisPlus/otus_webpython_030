@@ -5,12 +5,18 @@ import {
   LOAD_CHATS_BEGIN,
   LOAD_CHATS_SUCCESS,
   LOAD_CHATS_FAILURE,
+  SET_CURRENT_CHAT_ID
 } from "../../constants/actions/index";
+
 import {
   sleeping,
   fetchRestJson,
   defaultObjectedParams
 } from "../../api/api";
+
+import {
+    SEC_FORCE_TIMEOUT,
+} from "../../constants/settings/index";
 
 export function CreateChat(name) {
   console.group('actions.cht.index.CreateChat:');
@@ -25,7 +31,7 @@ export function CreateChat(name) {
   return dispatch => {
     dispatch(createBegin());
     // для демонстрации искусственно увеличиваю время ответа
-    sleeping(1000).then(() => {
+    sleeping(SEC_FORCE_TIMEOUT).then(() => {
       fetchRestJson('/api/ver.0/chat/create', params)
       .then(() => dispatch(createSuccess()))
       .catch(error => dispatch(createFailure(error)))
@@ -57,7 +63,7 @@ export function LoadChats() {
   return dispatch => {
     dispatch(loadBegin());
     // для демонстрации искусственно увеличиваю время ответа
-    sleeping(3000).then(() => {
+    sleeping(SEC_FORCE_TIMEOUT).then(() => {
       fetchRestJson( '/api/ver.0/chat/list')
       .then(response => response.json())
       .then(json => {
@@ -83,3 +89,14 @@ export const loadFailure = error => ({
   type: LOAD_CHATS_FAILURE,
   payload: { errorMessage: error.message, loading: false }
 });
+
+export function SetCurrentChatId(currentChatId) {
+  console.group('actions.cht.index.SetCurrentChatId:');
+  console.log(currentChatId);
+  console.groupEnd();
+
+  return {
+    type: SET_CURRENT_CHAT_ID,
+    payload: { currentChatId: currentChatId }
+  };
+};
