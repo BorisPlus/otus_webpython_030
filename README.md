@@ -102,6 +102,68 @@ python3 manage.py test flood_app.tests.ChatTestCase # can be creating / exists, 
 python3 manage.py test flood_app.tests.AccessTestCase # uniquest
 ```
 
+As result:
+
+```bash
+pip install coverage 
+coverage run --source='.' manage.py test
+coverage report
+```
+
+```text
+developer@TOSHIBA:~/PycharmProjects/otus_webpython_030$ coverage report
+Name                                                                               Stmts   Miss  Cover
+------------------------------------------------------------------------------------------------------
+core_app/__init__.py                                                                   0      0   100%
+core_app/admin.py                                                                      1      0   100%
+core_app/apps.py                                                                       3      3     0%
+core_app/management/__init__.py                                                        0      0   100%
+core_app/management/commands/__init__.py                                               0      0   100%
+core_app/management/commands/init_acl.py                                              17     17     0%
+core_app/management/commands/init_groups_permissions.py                               25     25     0%
+core_app/management/commands/init_users.py                                            36     36     0%
+core_app/management/commands/init_users_groups.py                                     24     24     0%
+core_app/migrations/__init__.py                                                        0      0   100%
+core_app/models.py                                                                     1      0   100%
+core_app/serializers.py                                                               26     11    58%
+core_app/tests.py                                                                      1      0   100%
+core_app/urls.py                                                                       3      0   100%
+core_app/views.py                                                                     18      7    61%
+django_admin_features/__init__.py                                                      0      0   100%
+django_admin_features/django_model_admin/__init__.py                                   0      0   100%
+django_admin_features/django_model_admin/model_admin.py                               41     41     0%
+django_admin_features/django_model_admin_custom_field_decorators/__init__.py           0      0   100%
+django_admin_features/django_model_admin_custom_field_decorators/helper/attrs.py      19     18     5%
+django_admin_features/django_model_admin_custom_field_decorators/html.py              84     67    20%
+flood_app/__init__.py                                                                  0      0   100%
+flood_app/admin.py                                                                    20      1    95%
+flood_app/apps.py                                                                      3      3     0%
+flood_app/management/__init__.py                                                       0      0   100%
+flood_app/management/commands/__init__.py                                              0      0   100%
+flood_app/management/commands/init_test_data.py                                       26     26     0%
+flood_app/migrations/0001_initial.py                                                   7      0   100%
+flood_app/migrations/0002_chat_chatmessage.py                                          6      0   100%
+flood_app/migrations/0003_auto_20190102_1339.py                                        6      0   100%
+flood_app/migrations/0004_auto_20190102_1936.py                                        4      0   100%
+flood_app/migrations/__init__.py                                                       0      0   100%
+flood_app/models.py                                                                   22      1    95%
+flood_app/serializers.py                                                              23      5    78%
+flood_app/tests.py                                                                    96      1    99%
+flood_app/urls.py                                                                      3      0   100%
+flood_app/views.py                                                                    60     31    48%
+manage.py                                                                              9      2    78%
+mysite/__init__.py                                                                     0      0   100%
+mysite/middleware.py                                                                  18     18     0%
+mysite/settings.py                                                                    21      0   100%
+mysite/urls.py                                                                         4      0   100%
+mysite/utils.py                                                                        9      6    33%
+mysite/wsgi.py                                                                         4      4     0%
+------------------------------------------------------------------------------------------------------
+TOTAL                                                                                640    347    46%
+
+```
+
+
 ## Router ( not ready homework part )
 
 * https://habr.com/post/329996/
@@ -231,3 +293,5 @@ class ChatMessageCreate(generics.ListCreateAPIView):
         request.user = SimpleLazyObject(lambda: self.__class__.get_jwt_user(request))
         return self.process_request(request)
 ```
+
+## Just for me
