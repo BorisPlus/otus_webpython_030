@@ -215,7 +215,7 @@ console.log('error.response = ', error.response);
 
 ### Question backend
 
-1) Для ассоциации токена и пользователя, чтоб выдавать в списке только назначеные ему чаты, реализовал middleware _JWTAuthenticationMiddleware_. 
+1) Я не хочу передавать user_id, уже имея токен. Для ассоциации токена и пользователя, чтоб выдавать в списке только назначеные ему чаты, реализовал middleware _JWTAuthenticationMiddleware_. 
 
 Все отлично работает на GET запросы: 
 
