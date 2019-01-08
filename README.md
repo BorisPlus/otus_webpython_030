@@ -12,6 +12,9 @@ Look at its GIF-animation:
 After refactor and user-friendly:
 <kbd>![react_redux_4.gif](README.files/img/screencasts/react_redux_4.gif)</kbd>
 
+Add CHAT-entity:
+<kbd>![react_redux_5.gif](README.files/img/screencasts/react_redux_5.gif)</kbd>
+
 ## Checking
 
 Run **backend** at first terminal window:
