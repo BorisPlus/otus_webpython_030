@@ -62,6 +62,27 @@ Worked urls:
  * npm install --save-dev @babel/preset-env
  * npm install --save-dev @babel/preset-react
 
+## Manage
+
+### Init Django by default user data
+
+```bash
+python3 manage.py init_acl # Access control list
+```
+Являет собьой последовательный вызов других manage-процедур
+
+```bash
+python3 manage.py init_users  # Массовое создание Django пользователей
+python3 manage.py init_users_groups  # Массовое создание групп
+python3 manage.py init_groups_permissions  # Массовое назначение прав группам
+```
+
+### Init Django by default test data
+
+```bash
+python3 manage.py init_test_data # Create chats and access to them
+```
+
 ## Testing
 
 ### Test Backend
