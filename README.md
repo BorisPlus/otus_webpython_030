@@ -39,29 +39,6 @@ Worked urls:
 * React (myapp) - **frontend** part
   * http://127.0.0.1:3000/
 
-
-## Maybe would be needed - my garbage list
-
- * cd myapp/
- * npm install --save-dev redux
- * npm install --save-dev react-redux
- * npm install --save react react-dom prop-types redux react-redux
- * npm install --save-dev react redux-thunk
- * npm install --save-dev react redux-logger
- * npm install --save-dev weak-key
- 
- * npm install -i webpack webpack-cli
- * npm install --save-dev babel-core babel-loader babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-decorators-legacy 
- * npm install moment --save
- * npm install babel-loader@next
- * npm install --save-dev @babel/core@7
- * npm install --save-dev @babel/core@7
- * npm install --save-dev @babel/plugin-proposal-decorators
- * npm install --save-dev babel-plugin-transform-decorators-legacy
- * npm install --save-dev babel-plugin-transform-class-properties
- * npm install --save-dev @babel/preset-env
- * npm install --save-dev @babel/preset-react
-
 ## Manage
 
 ### Init Django by default user data
@@ -295,3 +272,25 @@ class ChatMessageCreate(generics.ListCreateAPIView):
 ```
 
 ## Just for me
+
+### Maybe would be needed - my garbage list
+
+ * cd myapp/
+ * npm install --save-dev redux
+ * npm install --save-dev react-redux
+ * npm install --save react react-dom prop-types redux react-redux
+ * npm install --save-dev react redux-thunk
+ * npm install --save-dev react redux-logger
+ * npm install --save-dev weak-key
+ 
+ * npm install -i webpack webpack-cli
+ * npm install --save-dev babel-core babel-loader babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-decorators-legacy 
+ * npm install moment --save
+ * npm install babel-loader@next
+ * npm install --save-dev @babel/core@7
+ * npm install --save-dev @babel/core@7
+ * npm install --save-dev @babel/plugin-proposal-decorators
+ * npm install --save-dev babel-plugin-transform-decorators-legacy
+ * npm install --save-dev babel-plugin-transform-class-properties
+ * npm install --save-dev @babel/preset-env
+ * npm install --save-dev @babel/preset-react
