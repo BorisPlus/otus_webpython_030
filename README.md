@@ -75,8 +75,10 @@ python3 manage.py test
 Separately:
 
 ```bash
-python3 manage.py test flood_app.tests.UserTestCase
-python3 manage.py test flood_app.tests.ChatTestCase
+python3 manage.py test flood_app.tests.LowLevelTDDTestCase # Low level TDD
+python3 manage.py test flood_app.tests.UserTestCase # can be creating / exists
+python3 manage.py test flood_app.tests.ChatTestCase # can be creating / exists, string_representation, created_recently
+python3 manage.py test flood_app.tests.AccessTestCase # uniquest
 ```
 
 ### Router ( not ready part )
