@@ -81,7 +81,7 @@ python3 manage.py test flood_app.tests.ChatTestCase # can be creating / exists, 
 python3 manage.py test flood_app.tests.AccessTestCase # uniquest
 ```
 
-### Router ( not ready part )
+## Router ( not ready homework part )
 
 * https://habr.com/post/329996/
 * cd myapp/
@@ -101,6 +101,7 @@ Free
 Homework within "Web-разработчик на Python" on https://otus.ru/learning
 
 ## Question
+
 ### Question FRONTEND
 
 1) localStorage - игнорирует тип данных ?!
