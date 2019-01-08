@@ -11,7 +11,7 @@ import {
 
 const mapStateToProps = (state) => ({
   styleWidth: state.sideNavReducer.styleWidth,
-  authError: state.authReducer.error,
+  authError: state.authReducer.errorMessage,
   isAuthorize: state.authReducer.isAuthorize,
   currentUserId: state.authReducer.userId,
 });
@@ -71,6 +71,7 @@ class ReactApp extends React.Component {
           </div>
         </div> :
         <div className="root">
+          { authError ? <div className="errorMessage"> { authError } </div> : null}
           <div className="superCenter">
             < AuthorizeForm />
           </div>
