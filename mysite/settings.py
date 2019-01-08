@@ -37,22 +37,36 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    # 'rest_framework.authtoken',
     'corsheaders',
+    #
+    # 'rest_framework.authtoken'
 
+    'core_app',
     'flood_app'
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Note that this needs to be placed above CommonMiddleware
     'django.middleware.common.CommonMiddleware',
+
+    # 'mysite.middleware.UserMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # 'flood_app.middleware.AuthenticationMiddlewareJWT'
+    'mysite.middleware.JWTAuthenticationMiddleware',
+
+
+    # 'mysite.middleware.JWTAuthenticationMiddlewarePOST',
+    # 'mysite.middleware.JWTAuthenticationMiddlewareGET',
+
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -127,8 +141,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ),
 }
 
@@ -140,3 +154,29 @@ JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'mysite.utils.jwt_response_handler',
     # 'JWT_PAYLOAD_GET_USER_ID_HANDLER': 'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler'
 }
+# import datetime
+#
+# JWT_AUTH = {
+#
+#     'JWT_VERIFY': True,
+#     'JWT_VERIFY_EXPIRATION': True,
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+#     'JWT_AUTH_HEADER_PREFIX': 'JWT',
+# }
+
+# JWT_AUTH = {
+#     'JWT_ENCODE_HANDLER':
+#         'rest_framework_jwt.utils.jwt_encode_handler',
+#     'JWT_DECODE_HANDLER':
+#         'rest_framework_jwt.utils.jwt_decode_handler',
+#     'JWT_PAYLOAD_HANDLER':
+#         'rest_framework_jwt.utils.jwt_payload_handler',
+#     'JWT_PAYLOAD_GET_USER_ID_HANDLER':
+#         'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+#     'JWT_RESPONSE_PAYLOAD_HANDLER': 'mysite.utils.jwt_response_handler',
+#     # 'JWT_RESPONSE_PAYLOAD_HANDLER':
+#     #     'rest_framework_jwt.utils.jwt_response_payload_handler',
+#     'JWT_SECRET_KEY': SECRET_KEY,
+#     'JWT_ALGORITHM': 'HS256',
+#     'JWT_AUTH_HEADER_PREFIX': 'JWT',
+# }
