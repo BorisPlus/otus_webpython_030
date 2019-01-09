@@ -159,13 +159,13 @@ build fixture with its semantics identity
 
 ```text
 
-**Coverage report: 91% Show keyboard shortcuts**
+Coverage report: 91% Show keyboard shortcuts
 
-Module 	statements 	missing 	excluded 	coverage
-Total 	22 	2 	0 	91%
-flood_app/models.py 	22 	2 	0 	91%
+Module 	            statements 	missing 	excluded 	coverage
+flood_app/models.py 22 	        2 	        0 	        91%
+Total 	            22 	        2 	        0 	        91%
 
-coverage.py v4.5.2, created at 2019-01-09 17:09
+coverage.py v4.5.2, created at 2019-01-09 23:09
 
 ```
 
