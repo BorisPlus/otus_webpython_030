@@ -8,6 +8,8 @@ OLD.*
 gitignore/
 .idea/
 .coverage
+.pytest_cache/
+htmlcov/
 
 # React
 node_modules/
