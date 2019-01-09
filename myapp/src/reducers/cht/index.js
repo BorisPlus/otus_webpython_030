@@ -5,7 +5,8 @@ import {
   LOAD_CHATS_BEGIN,
   LOAD_CHATS_SUCCESS,
   LOAD_CHATS_FAILURE,
-  SET_CURRENT_CHAT_ID
+  SET_CURRENT_CHAT_ID,
+  DE_AUTH_SUCCESS
 } from "../../../src/constants/actions/index";
 
 import {
@@ -85,6 +86,14 @@ export function reducer(state = initialState, action) {
         currentChatId: action.payload.currentChatId,
       };
       break;
+
+    case DE_AUTH_SUCCESS:
+      return {
+        ...state,
+        currentChatId: null,
+        chats: action.payload.chats,
+        errorMessage: null
+      };
 
     default:
       newState = state;

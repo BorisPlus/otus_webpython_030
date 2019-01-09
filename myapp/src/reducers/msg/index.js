@@ -5,7 +5,8 @@ import {
   LOAD_CHAT_MESSAGES_BEGIN,
   LOAD_CHAT_MESSAGES_SUCCESS,
   LOAD_CHAT_MESSAGES_FAILURE,
-  SET_CURRENT_CHAT_ID
+  SET_CURRENT_CHAT_ID,
+  DE_AUTH_SUCCESS
 } from "../../../src/constants/actions/index";
 
 import {
@@ -117,6 +118,14 @@ export function reducer(state = initialState, action) {
         kick: new Date()
       };
       break;
+
+    case DE_AUTH_SUCCESS:
+      return {
+        ...state,
+        currentChatId: null,
+        chatMessages: [],
+        errorMessage: null
+      };
 
     default:
       newState = state;

@@ -3,6 +3,15 @@ import {connect} from 'react-redux';
 import key from "weak-key";
 import ReactChatMessage from "./ChatMessage";
 import ReactChatMessageForm from "./ChatMessageForm";
+
+import {
+    SetCurrentChatId
+} from "../../../src/actions/index";
+
+//import {
+//  getNewKick
+//} from "../../../src/functions/index";
+
 import {
   LoadChatMessages
 } from "../../../src/actions/index";
@@ -15,16 +24,18 @@ import {
 const mapStateToProps = (state) => ({
   wasChatMessagesOnceLoaded: state.msgReducer.wasChatMessagesOnceLoaded,
   loadingChatMessages: state.msgReducer.loadingChatMessages,
-  chatMessages: state.msgReducer.chatMessages || [],
+  chatMessages: state.msgReducer.chatMessages,
   kick: state.msgReducer.kick,
   errorMessage: state.msgReducer.errorMessage,
-  currentChatId: state.msgReducer.currentChatId,
+  currentChatId: state.chtReducer.currentChatId,
   hideChatMessages: state.msgReducer.hideChatMessages,
+  isAuthorize: state.authReducer.isAuthorize,
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    LoadChatMessages: (chatId, hideChatMessages) => dispatch(LoadChatMessages(chatId, hideChatMessages))
+    LoadChatMessages: (chatId, hideChatMessages) => dispatch(LoadChatMessages(chatId, hideChatMessages)),
+    SetCurrentChatId: (chatId) => dispatch(SetCurrentChatId(chatId))
   };
 };
 
@@ -55,13 +66,40 @@ class ReactChatMessageList extends React.Component {
     }
   }
 
+  setCurrentChatId = (chatId) => {
+    this.props.SetCurrentChatId(chatId);
+  };
+
   componentWillReceiveProps(nextProps) {
+    console.group('componentWillReceiveProps');
+    console.log('this.props.isAuthorize ' + this.props.isAuthorize);
+    console.log('this.props.currentChatId ' + this.props.currentChatId);
+    console.log('this.props.match.params.chat_pk ' + this.props.match.params.chat_pk);
+    console.log('nextProps.match.params.chat_pk ' + nextProps.match.params.chat_pk);
+    console.log('this.props.currentChatId === null && nextProps.match.params.chat_pk ' + (this.props.currentChatId === null && nextProps.match.params.chat_pk));
+    console.log('this.props.currentChatId !== nextProps.match.params.chat_pk ' + (this.props.currentChatId !== nextProps.match.params.chat_pk));
+    console.groupEnd();
+    if (  this.props.isAuthorize &&
+        (( (this.props.currentChatId === null) && nextProps.match.params.chat_pk ) ||
+        ( this.props.currentChatId !== nextProps.match.params.chat_pk )) ) {
+//        alert(nextProps.match.params.chat_pk);
+        this.props.SetCurrentChatId(nextProps.match.params.chat_pk);
+    }
+//    this.props.SetCurrentChatId(nextProps.match.params.chat_pk);
     this.updateByKick(nextProps)
+  }
+  componentWillMount() {
+    if (  this.props.isAuthorize &&
+        (( (this.props.currentChatId === null) && this.props.match.params.chat_pk ) ||
+        ( this.props.currentChatId !== this.props.match.params.chat_pk )) ) {
+        this.props.SetCurrentChatId(this.props.match.params.chat_pk);
+    }
+//    this.props.SetCurrentChatId(nextProps.match.params.chat_pk);
   }
 
   reloadChatMessages = () => {
-    const { currentChatId, hideChatMessages } = this.props;
-    if ( currentChatId && !hideChatMessages ) {
+    const { isAuthorize, currentChatId, hideChatMessages } = this.props;
+    if ( isAuthorize  && currentChatId && !hideChatMessages ) {
       this.props.LoadChatMessages(currentChatId, null)
     }
   };

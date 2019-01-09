@@ -10,7 +10,8 @@ import {
 const mapStateToProps = state => ({
   username: state.authReducer.username,
   password: state.authReducer.password,
-  authorizing: state.authReducer.authorizing
+  authorizing: state.authReducer.authorizing,
+  isAuthorize: state.authReducer.isAuthorize
 });
 
 const mapDispatchToProps = dispatch => {
@@ -23,7 +24,7 @@ class ReactAuthForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      inputUsername: '',
       password: '',
       isValid: false,
       authorizing: false
@@ -35,7 +36,7 @@ class ReactAuthForm extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    nextState.isValid = (nextState.username && nextState.password) ? true : false;
+    nextState.isValid = (nextState.inputUsername && nextState.password) ? true : false;
   }
 
   handleSubmit = (e, data) => {
@@ -45,8 +46,8 @@ class ReactAuthForm extends React.Component {
     console.groupEnd();
 
     e.preventDefault();
-    const { username, password } = this.state;
-    this.props.Authorize(username, password);
+    const { inputUsername, password } = this.state;
+    this.props.Authorize(inputUsername, password);
   }
 
   render() {
@@ -58,15 +59,18 @@ class ReactAuthForm extends React.Component {
         console.groupEnd();
     }
 
-    const { username, password, isValid } = this.state;
-    const { authorizing } = this.props;
+    const { inputUsername, password, isValid } = this.state;
+    const { username, authorizing, isAuthorize } = this.props;
     return (
+      <>{
+      isAuthorize ?
+      'Hello, ' + username + '!':
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          name="username"
+          name="inputUsername"
           placeholder="Username"
-          value={username}
+          value={inputUsername}
           onChange={this.handleChange}
           disabled={authorizing}
           autoFocus
@@ -85,6 +89,7 @@ class ReactAuthForm extends React.Component {
           value={ authorizing ? "Authorizing..." : "Let's Authorize" }
           disabled={ !isValid || authorizing } />
       </form>
+      }</>
     );
   }
 }
