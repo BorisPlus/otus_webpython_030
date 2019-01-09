@@ -1,0 +1,17 @@
+[run]
+omit =
+  *apps.py,
+  *migrations/*,
+  *settings*,
+  *core_app/*,
+  *django_admin_features/*,
+  *management/*,
+  *mysite/*,
+  *urls.py,
+  *wsgi/*,
+  *__init__.py,
+  *admin.py,
+  *serializers.py,
+  *tests.py,
+  *views.py,
+  *manage.py
