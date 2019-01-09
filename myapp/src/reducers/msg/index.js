@@ -98,7 +98,7 @@ export function reducer(state = initialState, action) {
       break;
 
     case LOAD_CHAT_MESSAGES_FAILURE:
-      alert('LOAD_CHAT_MESSAGES_FAILURE ' + action.payload.errorMessage);
+//      alert('LOAD_CHAT_MESSAGES_FAILURE ' + action.payload.errorMessage);
       newState = {
         ...state,
         loadingChatMessages: action.payload.loadingChatMessages,
