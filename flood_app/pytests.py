@@ -3,27 +3,27 @@ from . import models
 from django.db import models as django_models
 import pytest
 
-DO_NOT_TEST_RELATION = None
+HAS_NO_RELATION = None
 
 
 class LowLevelTddFixture:
     models_definitions = {
         'User': {
-            'username': (django_models.CharField, DO_NOT_TEST_RELATION),
+            'username': (django_models.CharField, HAS_NO_RELATION),
         },
         'Chat': {
-            'name': (django_models.CharField, DO_NOT_TEST_RELATION),
-            'created_at': (django_models.DateTimeField, DO_NOT_TEST_RELATION),
+            'name': (django_models.CharField, HAS_NO_RELATION),
+            'created_at': (django_models.DateTimeField, HAS_NO_RELATION),
             'owner': (django_models.ForeignKey, models.User)
         },
         'ChatMessage': {
-            'text': (django_models.CharField, DO_NOT_TEST_RELATION),
-            'created_at': (django_models.DateTimeField, DO_NOT_TEST_RELATION),
+            'text': (django_models.CharField, HAS_NO_RELATION),
+            'created_at': (django_models.DateTimeField, HAS_NO_RELATION),
             'owner': (django_models.ForeignKey, models.User),
             'chat': (django_models.ForeignKey, models.Chat)
         },
         'Access': {
-            'rank_order': (django_models.PositiveIntegerField, DO_NOT_TEST_RELATION),
+            'rank_order': (django_models.PositiveIntegerField, HAS_NO_RELATION),
             'user': (django_models.ForeignKey, models.User),
             'chat': (django_models.ForeignKey, models.Chat)
         },
@@ -83,7 +83,7 @@ def test_model_class_fields_types(model_class_name, expected_field_name, expecte
                          **LowLevelTddFixture.build())
 def test_model_class_fields_related_models(model_class_name, expected_field_name, expected_field_class,
                                            expected_field_relation):
-    if expected_field_relation == DO_NOT_TEST_RELATION:
+    if expected_field_relation == HAS_NO_RELATION:
         return
     model_class = getattr(models, model_class_name)
     field_relation = model_class._meta.get_field(expected_field_name).related_model

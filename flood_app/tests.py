@@ -22,27 +22,27 @@ class LowLevelTDDTestCase(TestCase):
     - Check model fields have need type
     - Check model fields have need relation
     """
-    DO_NOT_TEST_RELATION = None
+    HAS_NO_RELATION = None
 
     def setUp(self):
         from django.db import models as django_models
         self.models_for_test = {
             'User': {
-                'username': (django_models.CharField, self.__class__.DO_NOT_TEST_RELATION),
+                'username': (django_models.CharField, self.__class__.HAS_NO_RELATION),
             },
             'Chat': {
-                'name': (django_models.CharField, self.__class__.DO_NOT_TEST_RELATION),
-                'created_at': (django_models.DateTimeField, self.__class__.DO_NOT_TEST_RELATION),
+                'name': (django_models.CharField, self.__class__.HAS_NO_RELATION),
+                'created_at': (django_models.DateTimeField, self.__class__.HAS_NO_RELATION),
                 'owner': (django_models.ForeignKey, models.User)
             },
             'ChatMessage': {
-                'text': (django_models.CharField, self.__class__.DO_NOT_TEST_RELATION),
-                'created_at': (django_models.DateTimeField, self.__class__.DO_NOT_TEST_RELATION),
+                'text': (django_models.CharField, self.__class__.HAS_NO_RELATION),
+                'created_at': (django_models.DateTimeField, self.__class__.HAS_NO_RELATION),
                 'owner': (django_models.ForeignKey, models.User),
                 'chat': (django_models.ForeignKey, models.Chat)
             },
             'Access': {
-                'rank_order': (django_models.PositiveIntegerField, self.__class__.DO_NOT_TEST_RELATION),
+                'rank_order': (django_models.PositiveIntegerField, self.__class__.HAS_NO_RELATION),
                 'user': (django_models.ForeignKey, models.User),
                 'chat': (django_models.ForeignKey, models.Chat)
             },
@@ -110,7 +110,7 @@ class LowLevelTDDTestCase(TestCase):
             sys.stdout.write('test model class name "%s" \n' % model_class_name)
             for model_class_field_name in self.models_for_test[model_class_name]:
                 expect_field = self.models_for_test[model_class_name][model_class_field_name]
-                if expect_field[1] == self.__class__.DO_NOT_TEST_RELATION:
+                if expect_field[1] == self.__class__.HAS_NO_RELATION:
                     continue
                 sys.stdout.write('  test model class "%s" field "%s" expected relation to "%s" \n' % (
                     model_class_name,
