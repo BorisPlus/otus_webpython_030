@@ -157,59 +157,15 @@ pytest
 ```
 build fixture with its semantics identity
 
-```bash
+```text
 
-Coverage report: 17% Show keyboard shortcuts
+**Coverage report: 91% Show keyboard shortcuts**
+
 Module 	statements 	missing 	excluded 	coverage
-Total 	673 	560 	0 	17%
-core_app/__init__.py 	0 	0 	0 	100%
-core_app/admin.py 	1 	0 	0 	100%
-core_app/apps.py 	3 	3 	0 	0%
-core_app/management/__init__.py 	0 	0 	0 	100%
-core_app/management/commands/__init__.py 	0 	0 	0 	100%
-core_app/management/commands/init_acl.py 	17 	17 	0 	0%
-core_app/management/commands/init_groups_permissions.py 	25 	25 	0 	0%
-core_app/management/commands/init_users.py 	36 	36 	0 	0%
-core_app/management/commands/init_users_groups.py 	24 	24 	0 	0%
-core_app/migrations/__init__.py 	0 	0 	0 	100%
-core_app/models.py 	1 	0 	0 	100%
-core_app/serializers.py 	26 	26 	0 	0%
-core_app/tests.py 	1 	1 	0 	0%
-core_app/urls.py 	3 	3 	0 	0%
-core_app/views.py 	18 	18 	0 	0%
-django_admin_features/__init__.py 	0 	0 	0 	100%
-django_admin_features/django_model_admin/__init__.py 	0 	0 	0 	100%
-django_admin_features/django_model_admin/model_admin.py 	41 	41 	0 	0%
-django_admin_features/django_model_admin_custom_field_decorators/__init__.py 	0 	0 	0 	100%
-django_admin_features/django_model_admin_custom_field_decorators/helper/attrs.py 	19 	18 	0 	5%
-django_admin_features/django_model_admin_custom_field_decorators/html.py 	84 	67 	0 	20%
-flood_app/__init__.py 	0 	0 	0 	100%
-flood_app/admin.py 	20 	1 	0 	95%
-flood_app/apps.py 	3 	3 	0 	0%
-flood_app/management/__init__.py 	0 	0 	0 	100%
-flood_app/management/commands/__init__.py 	0 	0 	0 	100%
-flood_app/management/commands/init_test_data.py 	26 	26 	0 	0%
-flood_app/migrations/0001_initial.py 	7 	7 	0 	0%
-flood_app/migrations/0002_chat_chatmessage.py 	6 	6 	0 	0%
-flood_app/migrations/0003_auto_20190102_1339.py 	6 	6 	0 	0%
-flood_app/migrations/0004_auto_20190102_1936.py 	4 	4 	0 	0%
-flood_app/migrations/__init__.py 	0 	0 	0 	100%
+Total 	22 	2 	0 	91%
 flood_app/models.py 	22 	2 	0 	91%
-flood_app/pytests.py 	31 	0 	0 	100%
-flood_app/serializers.py 	23 	23 	0 	0%
-flood_app/tests.py 	96 	96 	0 	0%
-flood_app/urls.py 	3 	3 	0 	0%
-flood_app/views.py 	60 	60 	0 	0%
-gitignore/pytest_settings.py 	2 	0 	0 	100%
-manage.py 	9 	9 	0 	0%
-mysite/__init__.py 	0 	0 	0 	100%
-mysite/middleware.py 	18 	18 	0 	0%
-mysite/settings.py 	21 	0 	0 	100%
-mysite/urls.py 	4 	4 	0 	0%
-mysite/utils.py 	9 	9 	0 	0%
-mysite/wsgi.py 	4 	4 	0 	0%
 
-coverage.py v4.5.2, created at 2019-01-09 17:01
+coverage.py v4.5.2, created at 2019-01-09 17:09
 
 ```
 
