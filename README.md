@@ -9,7 +9,7 @@ It contains real two parts - **backend** and **frontend**. They are independent 
 As you see at GIF-animation it has BrowserRouter:
 <kbd>![react_redux_6_browser_routes.gif](README.files/img/screencasts/react_redux_6_browser_routes.gif)</kbd>
 
-and page refresh feature:
+and page refresh feature (look screencast after authorization):
 
 <kbd>![react_redux_7_page_refresh.gif](README.files/img/screencasts/react_redux_7_page_refresh.gif)</kbd>
 
