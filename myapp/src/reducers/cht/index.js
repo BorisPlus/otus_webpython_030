@@ -5,8 +5,12 @@ import {
   LOAD_CHATS_BEGIN,
   LOAD_CHATS_SUCCESS,
   LOAD_CHATS_FAILURE,
-  SET_CURRENT_CHAT_ID,
-  DE_AUTH_SUCCESS
+//  SET_CURRENT_CHAT_ID,
+  SET_CURRENT_CHAT,
+  DE_AUTH_SUCCESS,
+  SELECT_CHAT_BEGIN,
+  SELECT_CHAT_SUCCESS,
+  SELECT_CHAT_FAILURE
 } from "../../../src/constants/actions/index";
 
 import {
@@ -17,7 +21,9 @@ const initialState = {
   name: undefined,
   errorMessage: null,
   creating: false,
-  currentChatId: null
+  currentChatId: null,
+  currentChatName: null,
+  chatSelecting: null
 };
 
 export const myNameIs = 'ChatReducer';
@@ -80,20 +86,56 @@ export function reducer(state = initialState, action) {
       };
       break;
 
-    case SET_CURRENT_CHAT_ID:
+//    case SET_CURRENT_CHAT_ID:
+//      alert('cht ' + SET_CURRENT_CHAT_ID);
+//      newState = {
+//        ...state,
+//        currentChatId: action.payload.currentChatId,
+//      };
+//      break;
+
+    case SET_CURRENT_CHAT:
       newState = {
         ...state,
         currentChatId: action.payload.currentChatId,
+        currentChatName: action.payload.currentChatName
+      };
+      break;
+
+    case SELECT_CHAT_BEGIN:
+      newState = {
+        ...state,
+        chatSelecting: action.payload.chatSelecting,
+      };
+      break;
+
+    case SELECT_CHAT_SUCCESS:
+      newState = {
+        ...state,
+        currentChatId: action.payload.currentChatId,
+        currentChatName: action.payload.currentChatName,
+        chatSelecting: action.payload.chatSelecting
+      };
+      break;
+
+    case SELECT_CHAT_FAILURE:
+      newState = {
+        ...state,
+        currentChatId: action.payload.currentChatId,
+        currentChatName: action.payload.currentChatName,
+        chatSelecting: action.payload.chatSelecting
       };
       break;
 
     case DE_AUTH_SUCCESS:
-      return {
+      newState = {
         ...state,
-        currentChatId: null,
         chats: action.payload.chats,
-        errorMessage: null
+        errorMessage: null,
+        currentChatId: null,
+        currentChatName: null,
       };
+      break;
 
     default:
       newState = state;

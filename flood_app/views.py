@@ -12,6 +12,24 @@ from django.db.models import Q
 
 @authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
+class Chat(APIView):
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        chat_id = kwargs['chat_id']
+        if user.is_superuser:
+            obj = models.Chat.objects.get(pk=chat_id)
+        else:
+            obj = models.Chat.objects.filter(
+                Q(owner=user) |
+                Q(access__user=user)
+            ).get(pk=chat_id)
+        serializer = serializers.ChatSerializer(obj)
+        return Response(serializer.data)
+
+
+@authentication_classes([SessionAuthentication, BasicAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
 class ChatList(generics.ListAPIView):
     serializer_class = serializers.ChatSerializer
 

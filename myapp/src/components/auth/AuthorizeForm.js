@@ -62,34 +62,36 @@ class ReactAuthForm extends React.Component {
     const { inputUsername, password, isValid } = this.state;
     const { username, authorizing, isAuthorize } = this.props;
     return (
-      <>{
-      isAuthorize ?
-      'Hello, ' + username + '!':
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="inputUsername"
-          placeholder="Username"
-          value={inputUsername}
-          onChange={this.handleChange}
-          disabled={authorizing}
-          autoFocus
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={this.handleChange}
-          disabled={authorizing}
-        />
-        <input
-          type="submit"
-          data-is_requested={ authorizing ? "yes" : "no" }
-          value={ authorizing ? "Authorizing..." : "Let's Authorize" }
-          disabled={ !isValid || authorizing } />
-      </form>
-      }</>
+      <>
+        {
+          isAuthorize ?
+          <h1 className="superCenter"> Hello, { username }! </h1> :
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="inputUsername"
+              placeholder="Username"
+              value={inputUsername}
+              onChange={this.handleChange}
+              disabled={authorizing}
+              autoFocus
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={this.handleChange}
+              disabled={authorizing}
+            />
+            <input
+              type="submit"
+              data-is_requested={ authorizing ? "yes" : "no" }
+              value={ authorizing ? "Authorizing..." : "Let's Authorize" }
+              disabled={ !isValid || authorizing } />
+          </form>
+        }
+      </>
     );
   }
 }

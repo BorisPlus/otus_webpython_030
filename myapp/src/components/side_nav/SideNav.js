@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import DeAuthorizeLink from "../../../src/components/auth/DeAuthorizeLink";
 //import AuthorizeForm from "../../../src/components/auth/AuthorizeForm";
 import {
-  LoadChats, CloseSideNav
+  LoadChats, CloseSideNav, SetCurrentChat
 } from "../../../src/actions/index";
 
 import {
@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => {
   return {
     LoadChats: () => dispatch(LoadChats()),
     CloseSideNav: () => dispatch(CloseSideNav()),
+    SetCurrentChat: (chatId, chatName) => dispatch(SetCurrentChat(chatId, chatName)),
   };
 };
 
@@ -51,6 +52,15 @@ class ReactChatList extends React.Component {
     }
   }
 
+//  setCurrentChat = (chatId, chatName) => {
+//    this.props.SetCurrentChat(chatId, chatName);
+//  };
+
+  selectChat = (chatId, chatName) => {
+    this.props.SetCurrentChat(chatId, chatName);
+    this.closeSideNav();
+  }
+
   render() {
 
     if (CONSOLE_LOG_COMPONENTS.includes(this.constructor.name)) {
@@ -66,7 +76,7 @@ class ReactChatList extends React.Component {
     };
 
     const chats_obj = chats ? chats.map((chat) =>
-      <Link className="sideNavItem"  onClick={this.closeSideNav} key={key(chat)} to={'/chat/' + chat.id}>
+      <Link className="sideNavItem"  onClick={() => this.selectChat(chat.id, chat.name)} key={key(chat)} to={'/chat/' + chat.id}>
         {chat.name}
       </Link>
     ) : [] ;
@@ -89,6 +99,7 @@ class ReactChatList extends React.Component {
             <span className="sideNavItemDisabled">Chat list is empty :(</span> :
             chats_obj
           }
+
           {
             isAuthorize  && !chats && !loading?
             <span className="sideNavItemError">Please, reauthorize :(</span> :
@@ -106,7 +117,8 @@ class ReactChatList extends React.Component {
             <img alt='----' width='15' src="/favicon.818181.ico" />
           </div>
 
-          { isAuthorize ?
+          {
+            isAuthorize ?
             <DeAuthorizeLink /> :
             <Link className="sideNavItem" onClick={this.closeSideNav} to='/authorize'>AUTHORIZE</Link>
           }
