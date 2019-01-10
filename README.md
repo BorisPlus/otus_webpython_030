@@ -6,17 +6,26 @@ This is not the clean mono-repository!
 
 It contains real two parts - **backend** and **frontend**. They are independent and communicated by API.
 
-Add CHAT-entity (GIF-animation):
-<kbd>![react_redux_5.gif](README.files/img/screencasts/react_redux_5.gif)</kbd>
+As you see at GIF-animation it has BrowserRouter:
+<kbd>![react_redux_6_browser_routes.gif](README.files/img/screencasts/react_redux_6_browser_routes.gif)</kbd>
+
+and page refresh feature:
+
+<kbd>![react_redux_7_page_refresh.gif](README.files/img/screencasts/react_redux_7_page_refresh.gif)</kbd>
 
 ## Old versions
 
+### screencast p.3 
 Look at its GIF-animation:
 <kbd>![react_redux_3.gif](README.files/img/screencasts/react_redux_3.gif)</kbd>
 
+### screencast p.4 
 After refactor and user-friendly:
 <kbd>![react_redux_4.gif](README.files/img/screencasts/react_redux_4.gif)</kbd>
 
+### screencast p.5 
+Add CHAT-entity (GIF-animation):
+<kbd>![react_redux_5.gif](README.files/img/screencasts/react_redux_5.gif)</kbd>
 
 ## Checking
 
@@ -42,6 +51,8 @@ Worked urls:
   * http://127.0.0.1:8000/
   * http://127.0.0.1:8000/token-auth/
   * http://127.0.0.1:8000/api/ver.0/
+  * http://localhost:8000/api/ver.0/chat/1
+  * http://localhost:8000/api/ver.0/chat/list
 * React (myapp) - **frontend** part
   * http://127.0.0.1:3000/
 

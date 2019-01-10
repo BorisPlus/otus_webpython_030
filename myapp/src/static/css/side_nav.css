@@ -69,6 +69,8 @@
   color: #4d1a1a;
   display: block;
   transition: 0.3s;
+  text-shadow: #818181 1px 1px 0, #818181 -1px -1px 0,
+               #818181 -1px 1px 0, #818181 1px -1px 0;
 }
 
 .sideNav .sideNavItem:hover {

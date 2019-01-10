@@ -5,12 +5,18 @@ import {
   LOAD_CHAT_MESSAGES_BEGIN,
   LOAD_CHAT_MESSAGES_SUCCESS,
   LOAD_CHAT_MESSAGES_FAILURE,
-  SET_CURRENT_CHAT_ID
+  SET_CURRENT_CHAT,
+  DE_AUTH_SUCCESS,
+  SELECT_CHAT_SUCCESS
 } from "../../../src/constants/actions/index";
 
 import {
   CONSOLE_LOG_REDUCERS,
 } from "../../../src/settings";
+
+import {
+  getNewKick
+} from "../../../src/functions/index";
 
 const initialState = {
 //  text: undefined,
@@ -22,6 +28,7 @@ const initialState = {
   chatMessages: [],
   kickRefreshCreateMsgForm: null
 };
+
 
 export const myNameIs = 'MessageReducer';
 
@@ -106,17 +113,40 @@ export function reducer(state = initialState, action) {
       };
       break;
 
-    case SET_CURRENT_CHAT_ID:
+//    case SET_CURRENT_CHAT_ID:
+//      alert('msg ' + SET_CURRENT_CHAT_ID);
+//      newState = {
+//        ...state,
+//        loadingChatMessages: action.payload.loadingChatMessages,
+//        errorMessage: action.payload.errorMessage,
+//        currentChatId: action.payload.currentChatId,
+//        chatMessages: [],
+//        hideChatMessages: true,
+//        kick: getNewKick()
+//      };
+//      break;
+
+    case SET_CURRENT_CHAT:
       newState = {
         ...state,
-        loadingChatMessages: action.payload.loadingChatMessages,
-        errorMessage: action.payload.errorMessage,
-        currentChatId: action.payload.currentChatId,
-        chatMessages: [],
-        hideChatMessages: true,
-        kick: new Date()
+        kick: getNewKick()
       };
       break;
+
+    case SELECT_CHAT_SUCCESS:
+      newState = {
+        ...state,
+        kick: getNewKick()
+      };
+      break;
+
+    case DE_AUTH_SUCCESS:
+      return {
+        ...state,
+        currentChatId: null,
+        chatMessages: [],
+        errorMessage: null
+      };
 
     default:
       newState = state;

@@ -9,7 +9,7 @@ import {
 
 const mapStateToProps = state => ({
   creatingChatMessage: state.msgReducer.creatingChatMessage,
-  currentChatId: state.msgReducer.currentChatId,
+  currentChatId: state.chtReducer.currentChatId,
   currentUserId: state.authReducer.userId,
   kickRefreshCreateMsgForm: state.msgReducer.kickRefreshCreateMsgForm,
 });

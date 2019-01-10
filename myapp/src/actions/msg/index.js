@@ -91,7 +91,7 @@ export const loadChatMessagesSuccess = (chatId, json, withHideChatMessages = nul
 
 export const loadChatMessagesFailure = error => ({
   type: LOAD_CHAT_MESSAGES_FAILURE,
-  payload: { errorMessage: error.message, loadingChatMessages: false }
+  payload: { errorMessage: error.message, loadingChatMessages: false, hideChatMessages: false }
 });
 
 

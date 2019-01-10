@@ -10,7 +10,8 @@ import {
 const mapStateToProps = state => ({
   username: state.authReducer.username,
   password: state.authReducer.password,
-  authorizing: state.authReducer.authorizing
+  authorizing: state.authReducer.authorizing,
+  isAuthorize: state.authReducer.isAuthorize
 });
 
 const mapDispatchToProps = dispatch => {
@@ -23,7 +24,7 @@ class ReactAuthForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: '',
+      inputUsername: '',
       password: '',
       isValid: false,
       authorizing: false
@@ -35,7 +36,7 @@ class ReactAuthForm extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    nextState.isValid = (nextState.username && nextState.password) ? true : false;
+    nextState.isValid = (nextState.inputUsername && nextState.password) ? true : false;
   }
 
   handleSubmit = (e, data) => {
@@ -45,8 +46,8 @@ class ReactAuthForm extends React.Component {
     console.groupEnd();
 
     e.preventDefault();
-    const { username, password } = this.state;
-    this.props.Authorize(username, password);
+    const { inputUsername, password } = this.state;
+    this.props.Authorize(inputUsername, password);
   }
 
   render() {
@@ -58,33 +59,39 @@ class ReactAuthForm extends React.Component {
         console.groupEnd();
     }
 
-    const { username, password, isValid } = this.state;
-    const { authorizing } = this.props;
+    const { inputUsername, password, isValid } = this.state;
+    const { username, authorizing, isAuthorize } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={username}
-          onChange={this.handleChange}
-          disabled={authorizing}
-          autoFocus
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={this.handleChange}
-          disabled={authorizing}
-        />
-        <input
-          type="submit"
-          data-is_requested={ authorizing ? "yes" : "no" }
-          value={ authorizing ? "Authorizing..." : "Let's Authorize" }
-          disabled={ !isValid || authorizing } />
-      </form>
+      <>
+        {
+          isAuthorize ?
+          <h1 className="superCenter"> Hello, { username }! </h1> :
+          <form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              name="inputUsername"
+              placeholder="Username"
+              value={inputUsername}
+              onChange={this.handleChange}
+              disabled={authorizing}
+              autoFocus
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={this.handleChange}
+              disabled={authorizing}
+            />
+            <input
+              type="submit"
+              data-is_requested={ authorizing ? "yes" : "no" }
+              value={ authorizing ? "Authorizing..." : "Let's Authorize" }
+              disabled={ !isValid || authorizing } />
+          </form>
+        }
+      </>
     );
   }
 }

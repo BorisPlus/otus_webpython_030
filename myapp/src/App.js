@@ -1,9 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AuthorizeForm from './components/auth/AuthorizeForm';
-import ChatList from './components/cht/side_nav/ChatList';
+//import ChatList from './components/cht/side_nav/ChatList';
+import SideNav from './components/side_nav/SideNav';
 import ChatMessageList from './components/msg/ChatMessageList';
+import { Home } from './components/pages/home';
+import { Contacts } from './components/pages/contacts';
 import { LoadChats, OpenSideNav, CloseSideNav } from "./actions/index";
+
+import { Switch, Route } from 'react-router-dom';
+//import key from "weak-key";
+
 
 import {
   CONSOLE_LOG_COMPONENTS,
@@ -32,7 +39,10 @@ class ReactApp extends React.Component {
   }
 
   openSideNav = () => {
-    this.props.LoadChats();
+    const { isAuthorize } = this.props;
+    if (isAuthorize) {
+      this.props.LoadChats();
+    }
     this.props.OpenSideNav();
   };
 
@@ -49,7 +59,7 @@ class ReactApp extends React.Component {
         console.groupEnd();
     }
 
-    const { authError, isAuthorize } = this.props;
+    const { authError } = this.props;
     if (authError) {
         console.log('authError = ' + authError);
     }
@@ -60,24 +70,47 @@ class ReactApp extends React.Component {
     //<p style={{wordWrap: 'break-word'}}>username: { localStorage.getItem('username') }</p>
     return (
       <div className="App">
-        { isAuthorize ?
         <div className="root">
-          <ChatList />
+          { authError ? <div className="errorMessage"> { authError } </div> : null}
+
+          <SideNav />
+
           <div className="sideNavSpan">
             <span className="sideNavSpanSticky" onClick={this.openSideNav}>&laquo;</span>
           </div>
+
           <div id="main">
-            <ChatMessageList />
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route exact path='/home' component={Home}/>
+              <Route exact path='/contacts' component={Contacts}/>
+              <Route exact path='/authorize' component={AuthorizeForm}/>
+              <Route exact path='/chat/:chat_pk' component={ChatMessageList}/>
+            </Switch>
           </div>
-        </div> :
-        <div className="root">
-          { authError ? <div className="errorMessage"> { authError } </div> : null}
-          <div className="superCenter">
-            < AuthorizeForm />
-          </div>
-        </div> }
+        </div>
       </div>
     );
+//    return (
+//      <div className="App">
+//        { isAuthorize ?
+//        <div className="root">
+//          <SideNav />
+//          <div className="sideNavSpan">
+//            <span className="sideNavSpanSticky" onClick={this.openSideNav}>&laquo;</span>
+//          </div>
+//          <div id="main">
+//            <ChatMessageList />
+//          </div>
+//        </div> :
+//        <div className="root">
+//          { authError ? <div className="errorMessage"> { authError } </div> : null}
+//          <div className="superCenter">
+//            < AuthorizeForm />
+//          </div>
+//        </div> }
+//      </div>
+//    );
   }
 }
 
