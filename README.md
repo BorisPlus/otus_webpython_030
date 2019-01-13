@@ -41,6 +41,7 @@ Run **frontend** at second terminal window:
 ```bash
 cd myapp/ && npm i && npm start
 ```
+or
 
 ```bash
 cd myapp/ && npm start
@@ -180,11 +181,34 @@ coverage.py v4.5.2, created at 2019-01-09 23:09
 
 ```
 
-## Router ( not ready homework part )
+## Vue 2.0 application
 
-* https://habr.com/post/329996/
-* cd myapp/
-* npm install --save react-router-dom
+Это "Vue.js"-приложение.
+
+<kbd>![vue.gif](README.files/img/screencasts/vue.gif)</kbd>
+
+**Описание приложения:**
+* "портирован" с моего примера "React+Redux"-приложения
+* имеет "свою" систему роутинга между компонентами
+* не содержит Ajax
+* содержит соответствующую отладочную информацию
+
+**Мое мнение:**
+* Vue.js очень гибкий, сложную бизнес-логину реализовывать - лишь дело опыта
+* Но с React даже на страте было проще
+
+```bash
+cd ./vueapp
+
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+```
 
 ## Author
 
@@ -333,6 +357,9 @@ class ChatMessageCreate(generics.ListCreateAPIView):
  * npm install --save-dev babel-plugin-transform-class-properties
  * npm install --save-dev @babel/preset-env
  * npm install --save-dev @babel/preset-react
+ 
+ * npm install --save react-helmet
+
 
 
 
