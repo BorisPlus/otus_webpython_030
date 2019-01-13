@@ -1,5 +1,5 @@
 <template>
-  <base-layout>
+  <page-layout>
     <div>
     <h1>Вы готовы подискутировать ?</h1>
     <p>
@@ -9,14 +9,14 @@
         Оппонируя, не забывайте аргументировать.
     </p>
   </div>
-  </base-layout>
+  </page-layout>
 </template>
 
 <script>
-  import BaseLayout from '../../src/layouts/Base.vue'
+  import PageLayout from '../../src/layouts/Page.vue'
   export default {
     components: {
-      BaseLayout
+      PageLayout
     }
   }
 </script>

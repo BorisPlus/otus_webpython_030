@@ -1,4 +1,5 @@
 export default {
   '/': 'Home',
-  '/contacts': 'Contacts'
+  '/contacts': 'Contacts',
+  '/comments': 'Comments'
 }

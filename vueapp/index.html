@@ -3,19 +3,20 @@
   <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/public/img/favicon.ico">
-    <!--<link rel="stylesheet" type="text/css" href="/public/css/side_nav.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="/public/css/style.css">-->
     <title>Discussion</title>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
-    <div id="test"><!-- {{ test || 'Vue test FAIL' }}! --></div>
+    <div id="checker">
+      <p>{{ text }}</p>
+      <p>Date no change (no reRender component full page check): {{ dt }}</p>
+    </div>
     <div id="root">
       <div class="App">
-        <div id="app">
-        </div>
+        <div id="page"></div>
+        <div id="sideNav"></div>
       </div>
     </div>
     <script src="/dist/index.js"></script>

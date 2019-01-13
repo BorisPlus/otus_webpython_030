@@ -1,5 +1,5 @@
 <template>
-  <base-layout>
+  <page-layout>
     <div>
     <h1>Контакты</h1>
     <ul>
@@ -10,14 +10,14 @@
       <li><b>Viber:</b> 0 (000) 00-00-00 </li>
     </ul>
     </div>
-  </base-layout>
+  </page-layout>
 </template>
 
 <script>
-  import BaseLayout from '../../src/layouts/Base.vue'
+  import PageLayout from '../../src/layouts/Page.vue'
   export default {
     components: {
-      BaseLayout
+      PageLayout
     }
   }
 </script>

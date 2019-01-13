@@ -10,10 +10,6 @@
 
 <script>
   import routes from '../../src/routes'
-  function sleep (time) {
-      return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
 
   export default {
     props: {
@@ -30,17 +26,17 @@
     methods: {
       go (event) {
         event.preventDefault()
-        document.getElementById("mySideNav").style.width = '0';
-        // Usage!
-        sleep(500).then(() => {
-            this.$root.currentRoute = this.href;
-            window.history.pushState(
-              null,
-              routes[this.href],
-              this.href
-            );
-        });
 
+        // I don't like duplication logic, but this is thr aggregation
+        document.getElementById("mySideNav").style.width = '0';
+
+        this.$root.currentRoute = this.href;
+        window.history.pushState(null, routes[this.href], this.href);
+        window.dispatchEvent(new Event('popstate'));
+
+        console.log("this.href = " + this.href);
+        console.log("routes[this.href] = " + window.location.pathname);
+        console.log("window.location.pathname = " + window.location.pathname);
       }
     }
   }

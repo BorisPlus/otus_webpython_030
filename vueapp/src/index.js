@@ -1,10 +1,20 @@
 import Vue from 'vue'
 import routes from './routes'
+import { PageLayout } from '../src/layouts/Page.vue'
 
-const app = new Vue({
-  el: '#app',
+const __text_justForText = 'This is Vue App';
+const __datetime_justForText = new Date();
+
+const sideNav = new Vue({
+  el: '#sideNav',
+  render (h) {
+    return h(require('../src/components/SideNav.vue'))
+  }
+});
+
+const page = new Vue({
+  el: '#page',
   data: {
-    input: 'new Vue hello',
     currentRoute: window.location.pathname
   },
   computed: {
@@ -17,17 +27,19 @@ const app = new Vue({
     }
   },
   render (h) {
+    console.log("page.currentRoute = " + this.currentRoute);
     return h(this.ViewComponent)
   }
 });
+
 window.addEventListener('popstate', () => {
-  app.currentRoute = window.location.pathname
+    page.currentRoute = window.location.pathname;
 });
 
-
-const test = new Vue({
-  el: '#test',
+const checker = new Vue({
+  el: '#checker',
   data: {
-    test: 'Vue test success!'
+    text: __text_justForText,
+    dt: __datetime_justForText
   }
-});;
+});
