@@ -1,0 +1,60 @@
+// https://www.w3schools.com/csS/tryit.asp?filename=trycss_forms
+// https://www.w3schools.com/csS/css_form.asp
+
+form {
+    padding: 0;
+    margin: 0;
+}
+input[type=text], input[type=password], select {
+    width: 30%;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 2px solid #000;
+    margin: 1%;
+}
+input[type=text].double {
+    width: 60%;
+}
+input[type=submit] {
+    width: 30%;
+    color: #fff;
+    display: inline-block;
+    border: 2px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #009900;
+    margin: 1%;
+}
+input[type=submit]:hover {
+    background-color: #00CC00;
+    color: #000;
+}
+input[type=submit]:disabled {
+    color: #000 !important;
+    background-color: #ccc !important;
+    cursor: default;
+}
+
+input[type=submit].attention {
+    width: 20%;
+    color: #fff;
+    display: inline-block;
+    border: 2px solid #000;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #990000;
+    margin: 1%;
+}
+input[type=submit].attention:hover {
+    background-color: #CC0000;
+    color: #000;
+}
+
+.max_width input {
+    width: 98% !important;
+}
+
+*[data-is_requested="yes"] {
+    cursor: wait !important;
+}

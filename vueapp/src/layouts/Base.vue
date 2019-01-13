@@ -1,0 +1,166 @@
+<template>
+<div>
+  <div id="mySideNav" class="sideNav">
+    <div class="sideNavSpan"><span class="closeBtn" v-on:click="closeSideNav">&raquo;</span></div>
+
+    <div class="sideNavItemDisabled">
+      <img alt='----' width='15' src="/public/img/favicon.818181.ico" />
+    </div>
+
+    <v-link class="sideNavItem" href="/">HOME</v-link>
+    <v-link class="sideNavItem" href="/contacts">CONTACTS</v-link>
+
+    <div class="sideNavItemDisabled">
+      <img alt='----' width='15' src="/public/img/favicon.818181.ico" />
+    </div>
+
+  </div>
+
+  <div class="sideNavSpan">
+    <span class="sideNavSpanSticky" v-on:click="openSideNav">&laquo;</span>
+  </div>
+
+  <slot></slot>
+</div>
+</template>
+
+<script>
+  import VLink from '../../src/components/VLink.vue'
+  export default {
+    components: {
+      VLink
+    },
+    methods: {
+        openSideNav: function (e) {
+            document.getElementById("mySideNav").style.width = '100%';
+        },
+        closeSideNav: function (e) {
+            document.getElementById("mySideNav").style.width = '0';
+        }
+    }
+  }
+</script>
+
+<style scoped>
+/* https://www.w3schools.com/howto/howto_js_sidenav.asp */
+/* The side navigation menu */
+.sideNav {
+  height: 100%; /* 100% Full-height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  right: 0;
+  text-align: center;
+  background-color: #111; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+/* */
+.sideNavSpan {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  float: right;
+  height:100%
+}
+.sideNavSpan .sideNavSpanSticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  float: right;
+  background-color: #111; /* Black*/
+  color: #818181;
+  cursor: pointer;
+  top: 0px;
+  right: 0px;
+  font-size: 36px;
+  width: 36px;
+  border-radius: 0px 0px 0px 10px;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+.sideNavSpanSticky:hover {
+  color: #f1f1f1;
+}
+
+.sideNav .sideNavItem  {
+  padding: 4px 8px 4px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sideNav .sideNavItemDisabled  {
+  padding: 4px 8px 4px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #333;
+  display: block;
+  transition: 0.3s;
+}
+
+.sideNav .sideNavItemError  {
+  padding: 4px 8px 4px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #4d1a1a;
+  display: block;
+  transition: 0.3s;
+  text-shadow: #818181 1px 1px 0, #818181 -1px -1px 0,
+               #818181 -1px 1px 0, #818181 1px -1px 0;
+}
+
+.sideNav .sideNavItem:hover {
+  color: #f1f1f1;
+}
+
+.sideNav .currentChat {
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+.sideNav .notice  {
+  padding: 4px 0px 4px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  font-style: oblique;
+}
+
+.sideNav .closeBtn {
+  float: right;
+  background-color: #009900; /* Green */
+  color: #111;
+  cursor: pointer;
+  top: 0;
+  right: 0px;
+  font-size: 36px;
+  width: 36px;
+  border-radius: 0px 0px 0px 10px;
+  text-align: center;
+}
+.sideNav .closeBtn:hover {
+  background-color: #00CC00;
+  color: #f1f1f1;
+}
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sideNav {padding-top: 15px;}
+  .sideNav a {font-size: 18px;}
+}
+</style>
