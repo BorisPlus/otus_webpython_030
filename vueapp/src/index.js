@@ -8,9 +8,9 @@ const __datetime_justForText = new Date();
 const sideNav = new Vue({
   el: '#sideNav',
   render (h) {
-    return h(require('../src/components/SideNav.vue'))
+    return h(require('../src/components/SideNav.vue'));
   }
-});
+})
 
 const page = new Vue({
   el: '#page',

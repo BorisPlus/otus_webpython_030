@@ -205,10 +205,18 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
 ```
+
+Вопрос:
+* почему _npm run build_ выявляет ошибку пунктуации
+
+```text
+ERROR in index.js from UglifyJs
+Unexpected token: punc (() [index.js:11460,12]
+
+```
+
+* пробовал webpack --config webpack.config.js -p
 
 ## Author
 
